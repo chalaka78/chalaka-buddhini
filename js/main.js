@@ -1,6 +1,43 @@
 const envelopeIntro = document.getElementById("envelopeIntro");
 const openEnvelopeBtn = document.getElementById("openEnvelopeBtn");
 
+function createPetalEffect() {
+  if (document.querySelector(".petal-layer")) {
+    return;
+  }
+
+  const petalLayer = document.createElement("div");
+  petalLayer.className = "petal-layer";
+  petalLayer.setAttribute("aria-hidden", "true");
+
+  const petalColors = [
+    "rgba(255, 255, 255, 0.88)",
+    "rgba(214, 170, 88, 0.88)",
+    "rgba(255, 255, 255, 0.68)",
+    "rgba(214, 170, 88, 0.68)"
+  ];
+
+  const petalCount = window.matchMedia("(max-width: 520px)").matches ? 16 : 28;
+
+  for (let i = 0; i < petalCount; i += 1) {
+    const petal = document.createElement("span");
+    petal.className = "falling-petal";
+    petal.style.setProperty("--x", `${Math.random() * 100}%`);
+    petal.style.setProperty("--size", `${8 + Math.random() * 10}px`);
+    petal.style.setProperty("--duration", `${8 + Math.random() * 8}s`);
+    petal.style.setProperty("--delay", `${Math.random() * -14}s`);
+    petal.style.setProperty("--drift", `${-80 + Math.random() * 160}px`);
+    petal.style.setProperty("--rotate", `${Math.random() * 180}deg`);
+    petal.style.setProperty("--opacity", `${0.34 + Math.random() * 0.36}`);
+    petal.style.setProperty("--petal-color", petalColors[i % petalColors.length]);
+    petalLayer.appendChild(petal);
+  }
+
+  document.body.appendChild(petalLayer);
+}
+
+createPetalEffect();
+
 if (envelopeIntro && openEnvelopeBtn) {
   document.body.classList.add("intro-active");
 
