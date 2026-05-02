@@ -530,7 +530,8 @@ body::before {
   border-top: 1px solid rgba(244, 212, 147, 0.32);
   transform-origin: top center;
   z-index: 7;
-  transition: transform 0.65s ease, z-index 0.15s ease;
+  transition: transform 0.75s ease, z-index 0s linear 0.25s;
+  backface-visibility: hidden;
 }
 
 .envelope-letter-glow {
@@ -555,15 +556,15 @@ body::before {
   width: 82%;
   min-height: 178px;
   padding: 24px 16px 20px;
-  transform: translateX(-50%) translateY(70px);
+  transform: translateX(-50%) translateY(82px);
   border-radius: 22px;
   background:
     linear-gradient(145deg, rgba(255, 244, 223, 0.98), rgba(244, 212, 147, 0.9));
   color: #1b120b;
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
-  z-index: 3;
+  z-index: 6;
   opacity: 0;
-  transition: transform 0.75s ease, opacity 0.45s ease;
+  transition: transform 0.85s ease 0.18s, opacity 0.35s ease 0.12s;
 }
 
 .invite-note span {
@@ -627,7 +628,7 @@ body::before {
 }
 
 .envelope-intro.opened .invite-note {
-  transform: translateX(-50%) translateY(-48px);
+  transform: translateX(-50%) translateY(-86px);
   opacity: 1;
 }
 
@@ -806,6 +807,6 @@ body::before {
   }
 
   .envelope-intro.opened .invite-note {
-    transform: translateX(-50%) translateY(-42px);
+    transform: translateX(-50%) translateY(-72px);
   }
 }
