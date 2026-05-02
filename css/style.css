@@ -562,51 +562,74 @@ body::before {
 
 .panel-pattern {
   position: absolute;
-  inset: clamp(38px, 7vw, 94px);
+  inset: clamp(34px, 6vw, 86px);
   display: grid;
   place-items: center;
-  opacity: 0.95;
+  opacity: 0.96;
 }
 
-.panel-pattern::before,
+.panel-pattern::before {
+  content: "";
+  position: absolute;
+  width: min(34vw, 300px);
+  height: min(74vh, 560px);
+  border-radius: 48% 52% 50% 50% / 20% 20% 80% 80%;
+  border: 2px solid rgba(214, 170, 88, 0.72);
+  background:
+    radial-gradient(circle at 50% 18%, transparent 0 28px, rgba(214, 170, 88, 0.28) 29px 31px, transparent 32px),
+    radial-gradient(circle at 50% 48%, transparent 0 56px, rgba(214, 170, 88, 0.22) 57px 59px, transparent 60px),
+    repeating-radial-gradient(circle at 50% 50%, transparent 0 18px, rgba(214, 170, 88, 0.16) 19px 20px),
+    linear-gradient(180deg, rgba(214, 170, 88, 0.12), transparent 62%);
+  box-shadow:
+    inset 0 0 0 12px rgba(214, 170, 88, 0.05),
+    0 0 32px rgba(214, 170, 88, 0.13);
+}
+
 .panel-pattern::after {
   content: "";
   position: absolute;
-  width: min(34vw, 260px);
-  height: min(34vw, 260px);
-  border: 2px solid rgba(214, 170, 88, 0.62);
+  width: min(24vw, 210px);
+  height: min(58vh, 430px);
   border-radius: 50%;
-  box-shadow:
-    inset 0 0 0 14px rgba(214, 170, 88, 0.05),
-    0 0 0 10px rgba(214, 170, 88, 0.04);
-}
-
-.panel-pattern::after {
-  width: min(24vw, 180px);
-  height: min(24vw, 180px);
-  border-style: dashed;
-  transform: rotate(18deg);
+  background:
+    conic-gradient(
+      from 0deg,
+      transparent 0 12deg,
+      rgba(214, 170, 88, 0.72) 13deg 16deg,
+      transparent 17deg 30deg
+    );
+  mask-image: radial-gradient(ellipse at center, transparent 0 44%, #000 45% 47%, transparent 48%);
+  transform: rotate(12deg);
 }
 
 .panel-pattern span {
   position: absolute;
-  width: min(28vw, 220px);
-  height: min(28vw, 220px);
-  border: 1px solid rgba(214, 170, 88, 0.72);
-  border-radius: 42% 58% 44% 56%;
-  transform: rotate(var(--pattern-rotate, 0deg));
+  width: min(12vw, 92px);
+  height: min(12vw, 92px);
+  border: 1px solid rgba(214, 170, 88, 0.68);
+  border-radius: 72% 28% 68% 32%;
+  background: rgba(214, 170, 88, 0.08);
+  box-shadow: 0 0 18px rgba(214, 170, 88, 0.14);
 }
 
 .panel-pattern span:nth-child(1) {
-  --pattern-rotate: 0deg;
+  transform: translateY(-140px) rotate(45deg);
 }
 
 .panel-pattern span:nth-child(2) {
-  --pattern-rotate: 45deg;
+  transform: translateY(0) rotate(45deg) scale(1.18);
 }
 
 .panel-pattern span:nth-child(3) {
-  --pattern-rotate: 90deg;
+  transform: translateY(140px) rotate(45deg);
+}
+
+.split-panel-left .panel-pattern {
+  transform: translateX(-8%);
+}
+
+.split-panel-right .panel-pattern {
+  transform: translateX(8%) scaleX(-1);
 }
 
 .open-envelope-btn {
@@ -614,71 +637,95 @@ body::before {
   left: 50%;
   top: 50%;
   z-index: 8;
-  width: 124px;
-  height: 124px;
+  width: 132px;
+  height: 132px;
   padding: 0;
-  border: 2px solid var(--white);
+  border: 1px solid rgba(255, 244, 223, 0.92);
   border-radius: 50%;
   cursor: pointer;
   transform: translate(-50%, -50%);
   color: var(--burgundy);
   background:
-    radial-gradient(circle at 50% 50%, rgba(91, 15, 47, 0.18) 0 4px, transparent 5px),
-    radial-gradient(circle at 50% 50%, transparent 0 24px, rgba(91, 15, 47, 0.22) 25px 27px, transparent 28px),
-    repeating-conic-gradient(from 0deg, rgba(91, 15, 47, 0.26) 0 8deg, transparent 8deg 16deg),
-    radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.9), transparent 18%),
-    linear-gradient(135deg, var(--gold), var(--gold));
+    radial-gradient(circle at 32% 24%, rgba(255, 255, 255, 0.95), transparent 16%),
+    radial-gradient(circle at 68% 78%, rgba(91, 15, 47, 0.28), transparent 28%),
+    linear-gradient(145deg, #fff0b8 0%, #d6aa58 34%, #9f6d22 68%, #f3d385 100%);
   box-shadow:
-    0 0 0 10px rgba(214, 170, 88, 0.16),
-    0 0 0 20px rgba(255, 255, 255, 0.04),
-    0 22px 58px rgba(91, 15, 47, 0.44);
+    inset 8px 8px 16px rgba(255, 255, 255, 0.38),
+    inset -12px -14px 22px rgba(91, 15, 47, 0.34),
+    0 10px 0 rgba(117, 72, 20, 0.72),
+    0 28px 58px rgba(0, 0, 0, 0.34),
+    0 0 0 12px rgba(214, 170, 88, 0.15),
+    0 0 0 24px rgba(255, 255, 255, 0.04);
   transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease,
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
     opacity 0.3s ease;
 }
 
-.open-envelope-btn::before,
-.open-envelope-btn::after {
+.open-envelope-btn::before {
   content: "";
   position: absolute;
+  inset: 10px;
   border-radius: 50%;
+  border: 1px solid rgba(91, 15, 47, 0.34);
+  box-shadow:
+    inset 0 0 0 6px rgba(255, 255, 255, 0.16),
+    inset 0 0 20px rgba(91, 15, 47, 0.12);
   pointer-events: none;
 }
 
-.open-envelope-btn::before {
-  inset: 12px;
-  border: 1px solid rgba(91, 15, 47, 0.42);
-  box-shadow: inset 0 0 0 8px rgba(255, 255, 255, 0.12);
-}
-
 .open-envelope-btn::after {
-  inset: 33px;
-  border: 2px solid rgba(91, 15, 47, 0.42);
-  clip-path: polygon(50% 0, 64% 34%, 100% 50%, 64% 66%, 50% 100%, 36% 66%, 0 50%, 36% 34%);
-  background: rgba(255, 255, 255, 0.14);
+  content: "";
+  position: absolute;
+  inset: 24px;
+  border-radius: 50%;
+  border: 1px dashed rgba(91, 15, 47, 0.42);
+  pointer-events: none;
 }
 
 .open-envelope-btn span {
   position: relative;
-  z-index: 1;
-  display: block;
-  width: 42px;
-  height: 42px;
-  margin: auto;
-  border: 1px solid rgba(91, 15, 47, 0.42);
-  border-radius: 50%;
-  background:
-    radial-gradient(circle, var(--burgundy) 0 3px, transparent 4px),
-    repeating-conic-gradient(from 22deg, transparent 0 16deg, rgba(91, 15, 47, 0.32) 16deg 20deg);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  height: 100%;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2.15rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--burgundy);
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.62),
+    0 5px 12px rgba(91, 15, 47, 0.22);
+}
+
+.open-envelope-btn span small {
+  font-size: 1.55rem;
+  font-weight: 600;
+  color: rgba(91, 15, 47, 0.78);
 }
 
 .open-envelope-btn:hover {
-  transform: translate(-50%, -50%) scale(1.06);
+  transform: translate(-50%, -54%) scale(1.045);
   box-shadow:
-    0 0 0 14px rgba(214, 170, 88, 0.18),
-    0 0 0 26px rgba(255, 255, 255, 0.05),
-    0 28px 68px rgba(91, 15, 47, 0.5);
+    inset 8px 8px 16px rgba(255, 255, 255, 0.42),
+    inset -12px -14px 22px rgba(91, 15, 47, 0.34),
+    0 14px 0 rgba(117, 72, 20, 0.72),
+    0 34px 68px rgba(0, 0, 0, 0.38),
+    0 0 0 16px rgba(214, 170, 88, 0.18),
+    0 0 0 30px rgba(255, 255, 255, 0.05);
+}
+
+.open-envelope-btn:active {
+  transform: translate(-50%, -47%) scale(0.98);
+  box-shadow:
+    inset 8px 8px 16px rgba(91, 15, 47, 0.24),
+    inset -8px -8px 16px rgba(255, 255, 255, 0.24),
+    0 4px 0 rgba(117, 72, 20, 0.72),
+    0 18px 38px rgba(0, 0, 0, 0.28);
 }
 
 .open-envelope-btn:disabled {
@@ -876,33 +923,48 @@ body::before {
 /* Split Invitation Mobile Refinements */
 @media (max-width: 520px) {
   .panel-pattern {
-    inset: 34px 18px;
+    inset: 32px 16px;
   }
 
   .panel-pattern::before {
-    width: 142px;
-    height: 142px;
+    width: 150px;
+    height: 390px;
   }
 
   .panel-pattern::after {
-    width: 102px;
-    height: 102px;
+    width: 120px;
+    height: 310px;
   }
 
   .panel-pattern span {
-    width: 118px;
-    height: 118px;
+    width: 54px;
+    height: 54px;
+  }
+
+  .panel-pattern span:nth-child(1) {
+    transform: translateY(-104px) rotate(45deg);
+  }
+
+  .panel-pattern span:nth-child(2) {
+    transform: translateY(0) rotate(45deg) scale(1.15);
+  }
+
+  .panel-pattern span:nth-child(3) {
+    transform: translateY(104px) rotate(45deg);
   }
 
   .open-envelope-btn {
-    width: 96px;
-    height: 96px;
-    margin-top: 0;
+    width: 104px;
+    height: 104px;
   }
 
   .open-envelope-btn span {
-    width: 32px;
-    height: 32px;
+    font-size: 1.65rem;
+    gap: 4px;
+  }
+
+  .open-envelope-btn span small {
+    font-size: 1.16rem;
   }
 }
 
