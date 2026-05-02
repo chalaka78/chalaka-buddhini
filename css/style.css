@@ -837,3 +837,213 @@ body::before {
     transform: translateX(-50%) translateY(-96px) scale(1);
   }
 }
+/* Floral Corner Decorations + Falling Petals */
+.wedding-floral-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.envelope-intro.hide + .wedding-floral-layer,
+body:not(.intro-active) .wedding-floral-layer {
+  z-index: 2;
+}
+
+.floral-corner {
+  position: absolute;
+  top: 0;
+  width: clamp(150px, 24vw, 300px);
+  height: clamp(150px, 24vw, 300px);
+  opacity: 0.98;
+  filter: drop-shadow(0 18px 34px rgba(91, 15, 47, 0.28));
+}
+
+.floral-corner.left {
+  left: 0;
+}
+
+.floral-corner.right {
+  right: 0;
+  transform: scaleX(-1);
+}
+
+.floral-branch {
+  position: absolute;
+  top: 24px;
+  left: -18px;
+  width: 250px;
+  height: 2px;
+  background: var(--gold);
+  transform: rotate(-38deg);
+  transform-origin: left center;
+  border-radius: 999px;
+  opacity: 0.75;
+}
+
+.floral-branch::before,
+.floral-branch::after {
+  content: "";
+  position: absolute;
+  left: 56px;
+  width: 110px;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 999px;
+  transform-origin: left center;
+}
+
+.floral-branch::before {
+  top: -1px;
+  transform: rotate(28deg);
+}
+
+.floral-branch::after {
+  top: 1px;
+  transform: rotate(-28deg);
+}
+
+.corner-flower,
+.corner-leaf {
+  position: absolute;
+  display: block;
+}
+
+.corner-flower {
+  width: var(--size);
+  height: var(--size);
+  left: var(--x);
+  top: var(--y);
+  transform: rotate(var(--rotate));
+  animation: flowerSoftFloat 5.8s ease-in-out infinite;
+  animation-delay: var(--delay);
+}
+
+.corner-flower::before,
+.corner-flower::after {
+  content: "";
+  position: absolute;
+  inset: 8%;
+  background:
+    radial-gradient(circle at center, var(--gold) 0 12%, transparent 13%),
+    radial-gradient(ellipse at 50% 8%, var(--white) 0 20%, transparent 21%),
+    radial-gradient(ellipse at 92% 50%, var(--white) 0 20%, transparent 21%),
+    radial-gradient(ellipse at 50% 92%, var(--white) 0 20%, transparent 21%),
+    radial-gradient(ellipse at 8% 50%, var(--white) 0 20%, transparent 21%);
+  border-radius: 50%;
+}
+
+.corner-flower::after {
+  inset: 18%;
+  transform: rotate(45deg);
+  opacity: 0.9;
+}
+
+.corner-flower.gold-flower::before,
+.corner-flower.gold-flower::after {
+  background:
+    radial-gradient(circle at center, var(--white) 0 12%, transparent 13%),
+    radial-gradient(ellipse at 50% 8%, var(--gold) 0 20%, transparent 21%),
+    radial-gradient(ellipse at 92% 50%, var(--gold) 0 20%, transparent 21%),
+    radial-gradient(ellipse at 50% 92%, var(--gold) 0 20%, transparent 21%),
+    radial-gradient(ellipse at 8% 50%, var(--gold) 0 20%, transparent 21%);
+}
+
+.corner-leaf {
+  width: var(--w);
+  height: var(--h);
+  left: var(--x);
+  top: var(--y);
+  border: 1px solid var(--gold);
+  border-radius: 100% 0 100% 0;
+  transform: rotate(var(--rotate));
+  background: rgba(214, 170, 88, 0.12);
+  opacity: 0.9;
+}
+
+.petal-field {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.falling-petal {
+  position: absolute;
+  top: -40px;
+  left: var(--x);
+  width: var(--size);
+  height: calc(var(--size) * 1.35);
+  border-radius: 80% 20% 80% 20%;
+  background: var(--petal-color);
+  opacity: var(--opacity);
+  transform: rotate(var(--rotate));
+  animation: petalFall var(--duration) linear infinite;
+  animation-delay: var(--delay);
+  filter: drop-shadow(0 8px 12px rgba(91, 15, 47, 0.18));
+}
+
+.falling-petal::after {
+  content: "";
+  position: absolute;
+  inset: 18% 36%;
+  border-radius: 999px;
+  background: rgba(214, 170, 88, 0.3);
+  transform: rotate(24deg);
+}
+
+@keyframes petalFall {
+  0% {
+    transform: translate3d(0, -60px, 0) rotate(var(--rotate));
+    opacity: 0;
+  }
+
+  10% {
+    opacity: var(--opacity);
+  }
+
+  50% {
+    transform: translate3d(var(--drift), 52vh, 0) rotate(calc(var(--rotate) + 180deg));
+  }
+
+  90% {
+    opacity: var(--opacity);
+  }
+
+  100% {
+    transform: translate3d(calc(var(--drift) * -0.35), 108vh, 0) rotate(calc(var(--rotate) + 360deg));
+    opacity: 0;
+  }
+}
+
+@keyframes flowerSoftFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(var(--rotate));
+  }
+
+  50% {
+    transform: translateY(6px) rotate(calc(var(--rotate) + 4deg));
+  }
+}
+
+@media (max-width: 520px) {
+  .floral-corner {
+    width: 145px;
+    height: 145px;
+  }
+
+  .floral-branch {
+    width: 150px;
+    top: 20px;
+  }
+
+  .floral-branch::before,
+  .floral-branch::after {
+    left: 40px;
+    width: 72px;
+  }
+
+  .falling-petal {
+    animation-duration: calc(var(--duration) * 1.08);
+  }
+}
