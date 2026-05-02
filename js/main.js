@@ -11,7 +11,7 @@ if (envelopeIntro && openEnvelopeBtn) {
     setTimeout(() => {
       envelopeIntro.classList.add("hide");
       document.body.classList.remove("intro-active");
-    }, 1450);
+    }, 1650);
   });
 }
 
