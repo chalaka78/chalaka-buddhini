@@ -1,3 +1,19 @@
+const envelopeIntro = document.getElementById("envelopeIntro");
+const openEnvelopeBtn = document.getElementById("openEnvelopeBtn");
+
+if (envelopeIntro && openEnvelopeBtn) {
+  document.body.classList.add("intro-active");
+
+  openEnvelopeBtn.addEventListener("click", () => {
+    envelopeIntro.classList.add("opened");
+
+    setTimeout(() => {
+      envelopeIntro.classList.add("hide");
+      document.body.classList.remove("intro-active");
+    }, 2300);
+  });
+}
+
 const weddingDate = new Date("2026-07-31T00:00:00+05:30").getTime();
 
 function updateCountdown() {
