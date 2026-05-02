@@ -1,161 +1,917 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chalaka & Buddhini | Wedding Invitation</title>
+:root {
+  --bg: #0e0b08;
+  --card: rgba(255, 255, 255, 0.08);
+  --card-strong: rgba(255, 255, 255, 0.13);
+  --gold: #d6aa58;
+  --gold-light: #f4d493;
+  --cream: #fff4df;
+  --muted: #cbbfae;
+  --white: #ffffff;
+  --shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+* {
+  box-sizing: border-box;
+}
 
-  <link rel="stylesheet" href="css/style.css" />
-  <script src="js/main.js" defer></script>
-</head>
-<body>
-  <div class="envelope-intro" id="envelopeIntro">
-    <div class="split-invitation" aria-hidden="false">
-      <div class="split-panel split-panel-left">
-        <div class="panel-inner">
-          <span class="panel-line"></span>
-          <span class="panel-name">CHALAKA</span>
-          <span class="panel-date">31 JULY 2026</span>
-        </div>
-      </div>
+html {
+  scroll-behavior: smooth;
+}
 
-      <div class="split-panel split-panel-right">
-        <div class="panel-inner">
-          <span class="panel-line"></span>
-          <span class="panel-name">BUDDHINI</span>
-          <span class="panel-date">GRAND WALAWWA</span>
-        </div>
-      </div>
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  color: var(--cream);
+  background:
+    radial-gradient(circle at top left, rgba(214, 170, 88, 0.24), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(244, 212, 147, 0.13), transparent 35%),
+    linear-gradient(135deg, #120d09 0%, #070605 100%);
+  overflow-x: hidden;
+}
 
-      <div class="split-card-center">
-        <p class="intro-small-text">You are invited to celebrate</p>
-        <h2>Chalaka <span>&</span> Buddhini</h2>
-        <p class="split-card-text">Tap the golden seal to open the invitation</p>
-      </div>
+body.intro-active {
+  overflow: hidden;
+}
 
-      <button class="open-envelope-btn" id="openEnvelopeBtn" type="button" aria-label="Open wedding invitation">
-        <span>Open</span>
-      </button>
-    </div>
-  </div>
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: radial-gradient(circle at center, black, transparent 75%);
+  z-index: 0;
+}
 
-  <main class="page">
-    <section class="hero">
-      <div class="invitation-card reveal active">
-        <p class="eyebrow">Together with their families</p>
+.page {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
 
-        <h1 class="names">
-          <span>CHALAKA</span>
-          <span class="ampersand">&</span>
-          <span>BUDDHINI</span>
-        </h1>
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 18px;
+  position: relative;
+}
 
-        <p class="subtitle">
-          Joyfully invite you to celebrate the beginning of their forever, surrounded by love, blessings, and beautiful memories.
-        </p>
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(2px);
+  opacity: 0.65;
+  animation: floatGlow 7s ease-in-out infinite;
+}
 
-        <div class="date-row">
-          <div class="date-line"></div>
-          <div class="date-box">31 July 2026</div>
-          <div class="date-line"></div>
-        </div>
+.hero::before {
+  width: 320px;
+  height: 320px;
+  border: 1px solid rgba(214, 170, 88, 0.2);
+  top: 9%;
+  right: 8%;
+}
 
-        <div class="actions">
-          <a class="btn" href="#details">View Details</a>
-          <a class="btn secondary" href="https://maps.app.goo.gl/e7iPafdMdp5ST1J27" target="_blank" rel="noopener">Open Location</a>
-        </div>
-      </div>
-    </section>
+.hero::after {
+  width: 220px;
+  height: 220px;
+  border: 1px solid rgba(244, 212, 147, 0.15);
+  bottom: 10%;
+  left: 6%;
+  animation-delay: -2s;
+}
 
-    <section class="section reveal gallery-section">
-      <p class="eyebrow gallery-eyebrow">Our Moments</p>
-      <h2 class="section-title">A Beautiful Beginning</h2>
-      <p class="section-text">
-        A few memories from the journey that brought us here.
-      </p>
+.invitation-card {
+  width: min(980px, 100%);
+  padding: clamp(28px, 5vw, 72px);
+  text-align: center;
+  border: 1px solid rgba(244, 212, 147, 0.22);
+  border-radius: 34px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.045)),
+    rgba(14, 11, 8, 0.62);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(20px);
+  position: relative;
+  overflow: hidden;
+}
 
-      <div class="photo-gallery">
-        <div class="gallery-main">
-          <img src="images/eng1.webp" alt="Chalaka and Buddhini" />
-          <div class="gallery-caption">
-            <span>CHALAKA & BUDDHINI</span>
-            <strong>Forever begins here</strong>
-          </div>
-        </div>
+.invitation-card::before {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  border: 1px solid rgba(214, 170, 88, 0.24);
+  border-radius: 26px;
+  pointer-events: none;
+}
 
-        <div class="gallery-side">
-          <img src="images/engagement3.webp" alt="Wedding couple portrait" />
-          <img src="images/engagement5.webp" alt="Romantic couple moment" />
-        </div>
-      </div>
-    </section>
+.eyebrow {
+  margin: 0 0 20px;
+  color: var(--gold-light);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
 
-    <section class="section reveal" id="details">
-      <h2 class="section-title">Wedding Details</h2>
-      <p class="section-text">
-        We would be honoured by your presence as we celebrate our wedding day.
-      </p>
+.names {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: clamp(3rem, 8vw, 7.2rem);
+  line-height: 0.95;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--white);
+  text-shadow: 0 18px 45px rgba(0, 0, 0, 0.38);
+}
 
-      <div class="details-grid">
-        <div class="detail-card">
-          <div class="detail-icon">♡</div>
-          <h3>Ceremony</h3>
-          <p>Wedding ceremony details will be added soon.</p>
-        </div>
+.names span {
+  display: block;
+}
 
-        <div class="detail-card">
-          <div class="detail-icon">📅</div>
-          <h3>Date</h3>
-          <p>Friday<br />31 July 2026</p>
-        </div>
+.ampersand {
+  display: block;
+  margin: 14px 0 18px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2.3rem, 5vw, 4.4rem);
+  color: var(--gold);
+  font-weight: 500;
+  line-height: 0.8;
+  letter-spacing: 0;
+}
 
-        <div class="detail-card">
-          <div class="detail-icon">📍</div>
-          <h3>Venue</h3>
-          <p>Grand Walawwa<br />Kegalle, Sri Lanka</p>
-        </div>
-      </div>
-    </section>
+.subtitle {
+  max-width: 620px;
+  margin: 28px auto 0;
+  color: var(--muted);
+  font-size: clamp(1rem, 2vw, 1.18rem);
+  line-height: 1.8;
+}
 
-    <section class="section reveal">
-      <h2 class="section-title">Counting Down</h2>
-      <p class="section-text">
-        The day we begin a new chapter together is getting closer.
-      </p>
+.date-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 18px;
+  width: min(620px, 100%);
+  margin: 42px auto 0;
+  color: var(--cream);
+}
 
-      <div class="countdown" aria-label="Wedding countdown">
-        <div class="time-box">
-          <strong id="days">00</strong>
-          <span>Days</span>
-        </div>
-        <div class="time-box">
-          <strong id="hours">00</strong>
-          <span>Hours</span>
-        </div>
-        <div class="time-box">
-          <strong id="minutes">00</strong>
-          <span>Minutes</span>
-        </div>
-        <div class="time-box">
-          <strong id="seconds">00</strong>
-          <span>Seconds</span>
-        </div>
-      </div>
-    </section>
+.date-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(214, 170, 88, 0.7), transparent);
+}
 
-    <section class="section reveal">
-      <div class="quote-card">
-        <p>Two hearts. One promise. A lifetime of love.</p>
-      </div>
-    </section>
+.date-box {
+  padding: 14px 26px;
+  border: 1px solid rgba(214, 170, 88, 0.38);
+  border-radius: 999px;
+  color: var(--gold-light);
+  background: rgba(214, 170, 88, 0.08);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
 
-    <footer class="footer">
-      <p>With love, <strong>Chalaka & Buddhini</strong></p>
-    </footer>
-  </main>
-</body>
-</html>
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 40px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 24px;
+  border-radius: 999px;
+  color: #16100a;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  text-decoration: none;
+  font-weight: 800;
+  box-shadow: 0 14px 34px rgba(214, 170, 88, 0.25);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 44px rgba(214, 170, 88, 0.34);
+}
+
+.btn.secondary {
+  color: var(--cream);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(244, 212, 147, 0.22);
+  box-shadow: none;
+}
+
+.section {
+  width: min(1120px, calc(100% - 36px));
+  margin: 0 auto;
+  padding: 80px 0;
+}
+
+.section-title {
+  margin: 0 0 18px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2.6rem, 6vw, 5rem);
+  line-height: 1;
+  color: var(--white);
+  text-align: center;
+}
+
+.section-text {
+  max-width: 720px;
+  margin: 0 auto 44px;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.detail-card {
+  padding: 30px 24px;
+  border-radius: 28px;
+  background: var(--card);
+  border: 1px solid rgba(244, 212, 147, 0.18);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
+  text-align: center;
+}
+
+.detail-icon {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 18px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(214, 170, 88, 0.13);
+  color: var(--gold-light);
+  font-size: 1.5rem;
+}
+
+.detail-card h3 {
+  margin: 0 0 10px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2rem;
+  color: var(--white);
+  font-weight: 600;
+}
+
+.detail-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 42px;
+}
+
+.time-box {
+  padding: 26px 12px;
+  border-radius: 24px;
+  background: var(--card-strong);
+  border: 1px solid rgba(244, 212, 147, 0.18);
+  text-align: center;
+}
+
+.time-box strong {
+  display: block;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  line-height: 1;
+  color: var(--gold-light);
+}
+
+.time-box span {
+  display: block;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.quote-card {
+  width: min(850px, 100%);
+  margin: 0 auto;
+  padding: clamp(30px, 5vw, 56px);
+  border-radius: 34px;
+  background:
+    linear-gradient(135deg, rgba(214, 170, 88, 0.16), rgba(255, 255, 255, 0.045));
+  border: 1px solid rgba(244, 212, 147, 0.22);
+  text-align: center;
+}
+
+.quote-card p {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2rem, 4.4vw, 3.8rem);
+  line-height: 1.16;
+  color: var(--white);
+}
+
+.footer {
+  padding: 42px 18px 56px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.footer strong {
+  color: var(--gold-light);
+  font-weight: 700;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Gallery Section */
+
+.gallery-section {
+  padding-top: 40px;
+}
+
+.gallery-eyebrow {
+  text-align: center;
+}
+
+.photo-gallery {
+  display: grid;
+  grid-template-columns: 1.35fr 0.85fr;
+  grid-template-areas: "main side";
+  gap: 18px;
+  margin-top: 46px;
+}
+
+.photo-gallery img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.8s ease, filter 0.8s ease;
+}
+
+.gallery-main,
+.gallery-side {
+  position: relative;
+  overflow: hidden;
+  border-radius: 30px;
+  border: 1px solid rgba(244, 212, 147, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+}
+
+.gallery-main {
+  grid-area: main;
+  min-height: 640px;
+}
+
+.gallery-side {
+  grid-area: side;
+  display: grid;
+  gap: 18px;
+  min-height: 640px;
+}
+
+.gallery-main::after,
+.gallery-side::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 45%,
+    rgba(0, 0, 0, 0.5)
+  );
+  pointer-events: none;
+}
+
+.gallery-main:hover img,
+.gallery-side img:hover {
+  transform: scale(1.045);
+  filter: brightness(1.08);
+}
+
+.gallery-caption {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 28px;
+  z-index: 2;
+  text-align: left;
+}
+
+.gallery-caption span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--gold-light);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.gallery-caption strong {
+  display: block;
+  font-family: "Cormorant Garamond", serif;
+  color: var(--white);
+  font-size: clamp(2.3rem, 4vw, 4.2rem);
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* Split Invitation Intro */
+
+.envelope-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at center, rgba(214, 170, 88, 0.18), transparent 38%),
+    linear-gradient(135deg, #5b0f2f 0%, #5b0f2f 100%);
+  transition: opacity 0.55s ease, visibility 0.55s ease;
+}
+
+.envelope-intro.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.split-invitation {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.split-panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50.2%;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08), transparent 20%, transparent 80%, rgba(255, 255, 255, 0.08)),
+    linear-gradient(135deg, #5b0f2f 0%, #5b0f2f 100%);
+  border: 1px solid rgba(214, 170, 88, 0.42);
+  box-shadow: 0 26px 90px rgba(91, 15, 47, 0.55);
+  transition:
+    transform 1.28s cubic-bezier(0.76, 0, 0.24, 1),
+    opacity 0.6s ease 0.78s;
+  z-index: 4;
+}
+
+.split-panel-left {
+  left: 0;
+  transform-origin: left center;
+  border-right: 1px solid rgba(214, 170, 88, 0.7);
+}
+
+.split-panel-right {
+  right: 0;
+  transform-origin: right center;
+  border-left: 1px solid rgba(214, 170, 88, 0.7);
+}
+
+.split-panel::before {
+  content: "";
+  position: absolute;
+  inset: clamp(18px, 3vw, 40px);
+  border: 1px solid rgba(214, 170, 88, 0.56);
+  pointer-events: none;
+}
+
+.split-panel-left::after,
+.split-panel-right::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, var(--gold), transparent);
+  opacity: 0.76;
+}
+
+.split-panel-left::after {
+  right: 0;
+}
+
+.split-panel-right::after {
+  left: 0;
+}
+
+.panel-inner {
+  position: absolute;
+  inset: clamp(34px, 6vw, 86px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  text-align: center;
+}
+
+.panel-line {
+  width: min(190px, 44%);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.panel-name {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2.2rem, 6vw, 5.4rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--white);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  text-transform: uppercase;
+}
+
+.panel-date {
+  color: var(--gold);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.split-card-center {
+  position: relative;
+  z-index: 6;
+  width: min(560px, calc(100% - 34px));
+  min-height: 340px;
+  padding: clamp(34px, 5vw, 58px) clamp(24px, 4vw, 46px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 36px;
+  background: var(--white);
+  color: var(--burgundy);
+  border: 2px solid var(--gold);
+  box-shadow: 0 34px 110px rgba(91, 15, 47, 0.55);
+  transition:
+    transform 0.75s ease,
+    opacity 0.48s ease;
+}
+
+.split-card-center::before {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  border: 1px solid var(--gold);
+  border-radius: 26px;
+  pointer-events: none;
+}
+
+.split-card-center::after {
+  content: "✦";
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--gold);
+  font-size: 1.1rem;
+}
+
+.split-card-center .intro-small-text {
+  margin: 0 0 18px;
+  color: var(--gold);
+}
+
+.split-card-center h2 {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2.8rem, 8vw, 5.4rem);
+  line-height: 0.95;
+  color: var(--burgundy);
+  font-weight: 700;
+}
+
+.split-card-center h2 span {
+  display: block;
+  margin: 12px 0;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+.split-card-text {
+  max-width: 360px;
+  margin: 22px auto 0;
+  color: var(--burgundy);
+  opacity: 0.82;
+  line-height: 1.7;
+}
+
+.open-envelope-btn {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 8;
+  width: 104px;
+  height: 104px;
+  padding: 0;
+  border: 2px solid var(--white);
+  border-radius: 50%;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  color: var(--burgundy);
+  background:
+    radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.92), transparent 18%),
+    linear-gradient(135deg, var(--gold), var(--gold));
+  font-family: "Inter", sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow:
+    0 0 0 10px rgba(214, 170, 88, 0.16),
+    0 18px 46px rgba(91, 15, 47, 0.34);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.open-envelope-btn::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(91, 15, 47, 0.36);
+  border-radius: 50%;
+}
+
+.open-envelope-btn span {
+  position: relative;
+  z-index: 1;
+  display: block;
+  font-size: 0.75rem;
+}
+
+.open-envelope-btn:hover {
+  transform: translate(-50%, -50%) scale(1.06);
+  box-shadow:
+    0 0 0 14px rgba(214, 170, 88, 0.18),
+    0 24px 58px rgba(91, 15, 47, 0.42);
+}
+
+.open-envelope-btn:disabled {
+  cursor: default;
+}
+
+.envelope-intro.opened .split-panel-left {
+  transform: translateX(-104%) rotateY(-8deg);
+  opacity: 0.98;
+}
+
+.envelope-intro.opened .split-panel-right {
+  transform: translateX(104%) rotateY(8deg);
+  opacity: 0.98;
+}
+
+.envelope-intro.opened .split-card-center {
+  transform: scale(0.94);
+  opacity: 0;
+}
+
+.envelope-intro.opened .open-envelope-btn {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.72);
+}
+
+@keyframes floatGlow {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-18px) scale(1.03);
+  }
+}
+
+/* Tablet */
+
+@media (max-width: 820px) {
+  .hero {
+    min-height: auto;
+    padding: 26px 14px 44px;
+  }
+
+  .invitation-card {
+    border-radius: 26px;
+  }
+
+  .invitation-card::before {
+    inset: 10px;
+    border-radius: 20px;
+  }
+
+  .date-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .date-line {
+    width: 100%;
+  }
+
+  .details-grid,
+  .countdown {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .photo-gallery {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "main"
+      "side";
+  }
+
+  .gallery-main,
+  .gallery-side {
+    min-height: auto;
+  }
+
+  .gallery-main img {
+    height: 520px;
+  }
+
+  .gallery-side {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .gallery-side img {
+    height: 320px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 520px) {
+  .eyebrow {
+    font-size: 0.66rem;
+    letter-spacing: 0.22em;
+  }
+
+  .names {
+    font-size: clamp(2.15rem, 13vw, 4.2rem);
+    letter-spacing: 0.12em;
+  }
+
+  .ampersand {
+    margin: 12px 0 15px;
+  }
+
+  .date-box {
+    width: 100%;
+    padding: 13px 16px;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .section {
+    width: min(100% - 28px, 1120px);
+    padding: 58px 0;
+  }
+
+  .details-grid,
+  .countdown {
+    grid-template-columns: 1fr;
+  }
+
+  .photo-gallery {
+    gap: 14px;
+    margin-top: 34px;
+  }
+
+  .gallery-main,
+  .gallery-side {
+    border-radius: 24px;
+  }
+
+  .gallery-main img {
+    height: 420px;
+  }
+
+  .gallery-side {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .gallery-side img {
+    height: 380px;
+  }
+
+  .gallery-caption {
+    left: 22px;
+    right: 22px;
+    bottom: 22px;
+  }
+
+  .envelope-wrap {
+    height: 250px;
+  }
+
+  .envelope-back {
+    inset: 66px 0 0;
+  }
+
+  .envelope-front {
+    height: 158px;
+  }
+
+  .envelope-flap {
+    top: 66px;
+    height: 150px;
+  }
+
+  .invite-note {
+    width: 86%;
+    min-height: 160px;
+    padding: 22px 12px 18px;
+  }
+
+  .invite-note span {
+    font-size: clamp(1rem, 6vw, 1.35rem);
+    letter-spacing: 0.09em;
+  }
+
+  .envelope-intro.opened .invite-note {
+    transform: translateX(-50%) translateY(-72px);
+  }
+}
+
+
+@media (max-width: 520px) {
+  .split-card-center {
+    width: min(330px, calc(100% - 28px));
+    min-height: 300px;
+    border-radius: 28px;
+  }
+
+  .split-card-center::before {
+    inset: 12px;
+    border-radius: 20px;
+  }
+
+  .open-envelope-btn {
+    width: 86px;
+    height: 86px;
+  }
+
+  .panel-name {
+    font-size: clamp(1.7rem, 9vw, 3.2rem);
+    letter-spacing: 0.12em;
+  }
+
+  .panel-date {
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+  }
+}
