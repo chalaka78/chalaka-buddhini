@@ -421,3 +421,181 @@ body::before {
     grid-template-columns: 1fr;
   }
 }
+
+.gallery-section {
+  padding-top: 40px;
+}
+
+.gallery-eyebrow {
+  text-align: center;
+}
+
+.photo-gallery {
+  display: grid;
+  grid-template-columns: 1.35fr 0.85fr;
+  grid-template-areas:
+    "main side"
+    "wide tall";
+  gap: 18px;
+  margin-top: 46px;
+}
+
+.photo-gallery img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.8s ease, filter 0.8s ease;
+}
+
+.gallery-main,
+.gallery-side,
+.gallery-wide,
+.gallery-tall {
+  position: relative;
+  overflow: hidden;
+  border-radius: 30px;
+  border: 1px solid rgba(244, 212, 147, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+}
+
+.gallery-main {
+  grid-area: main;
+  min-height: 640px;
+}
+
+.gallery-side {
+  grid-area: side;
+  display: grid;
+  gap: 18px;
+  min-height: 640px;
+}
+
+.gallery-wide {
+  grid-area: wide;
+  min-height: 390px;
+}
+
+.gallery-tall {
+  grid-area: tall;
+  min-height: 390px;
+}
+
+.gallery-main::after,
+.gallery-side::after,
+.gallery-wide::after,
+.gallery-tall::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 45%,
+    rgba(0, 0, 0, 0.5)
+  );
+  pointer-events: none;
+}
+
+.gallery-main:hover img,
+.gallery-side img:hover,
+.gallery-wide:hover img,
+.gallery-tall:hover img {
+  transform: scale(1.045);
+  filter: brightness(1.08);
+}
+
+.gallery-caption {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 28px;
+  z-index: 2;
+  text-align: left;
+}
+
+.gallery-caption span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--gold-light);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.gallery-caption strong {
+  display: block;
+  font-family: "Cormorant Garamond", serif;
+  color: var(--white);
+  font-size: clamp(2.3rem, 4vw, 4.2rem);
+  font-weight: 600;
+  line-height: 1;
+}
+
+@media (max-width: 820px) {
+  .photo-gallery {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "main"
+      "side"
+      "wide"
+      "tall";
+  }
+
+  .gallery-main,
+  .gallery-side,
+  .gallery-wide,
+  .gallery-tall {
+    min-height: auto;
+  }
+
+  .gallery-main img,
+  .gallery-wide img,
+  .gallery-tall img {
+    height: 520px;
+  }
+
+  .gallery-side {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .gallery-side img {
+    height: 320px;
+  }
+}
+
+@media (max-width: 520px) {
+  .photo-gallery {
+    gap: 14px;
+    margin-top: 34px;
+  }
+
+  .gallery-main,
+  .gallery-side,
+  .gallery-wide,
+  .gallery-tall {
+    border-radius: 24px;
+  }
+
+  .gallery-main img,
+  .gallery-wide img,
+  .gallery-tall img {
+    height: 420px;
+  }
+
+  .gallery-side {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .gallery-side img {
+    height: 380px;
+  }
+
+  .gallery-caption {
+    left: 22px;
+    right: 22px;
+    bottom: 22px;
+  }
+}
