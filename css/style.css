@@ -534,13 +534,12 @@ body::before {
 
 @media (max-width: 820px) {
   .photo-gallery {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "main"
-      "side"
-      "wide"
-      "tall";
-  }
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "main"
+    "side"
+    "landscape";
+}
 
   .gallery-main,
   .gallery-side,
@@ -548,11 +547,13 @@ body::before {
     min-height: auto;
   }
 
-  .gallery-main img,
-  .gallery-wide img,
-  .gallery-tall img {
-    height: 520px;
-  }
+.gallery-main img {
+  height: 520px;
+}
+
+.gallery-landscape img {
+  height: 330px;
+}
 
   .gallery-side {
     grid-template-columns: 1fr 1fr;
@@ -576,11 +577,13 @@ body::before {
     border-radius: 24px;
   }
 
-  .gallery-main img,
-  .gallery-wide img,
-  .gallery-tall img {
-    height: 420px;
-  }
+.gallery-main img {
+  height: 420px;
+}
+
+.gallery-landscape img {
+  height: 260px;
+}
 
   .gallery-side {
     grid-template-columns: 1fr;
@@ -596,4 +599,45 @@ body::before {
     right: 22px;
     bottom: 22px;
   }
+
+  .gallery-name-overlay {
+  gap: 8px;
 }
+
+.gallery-name-overlay span {
+  letter-spacing: 0.1em;
+}
+}
+
+.gallery-name-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.35),
+    rgba(0, 0, 0, 0.06),
+    rgba(0, 0, 0, 0.35)
+  );
+}
+
+.gallery-name-overlay span {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2.2rem, 6vw, 6.4rem);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.gallery-name-overlay small {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2rem, 4vw, 4rem);
+  color: var(--gold-light);
+}
+
+
