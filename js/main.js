@@ -36,8 +36,6 @@ function createPetalEffect() {
   document.body.appendChild(petalLayer);
 }
 
-createPetalEffect();
-
 if (envelopeIntro && openEnvelopeBtn) {
   document.body.classList.add("intro-active");
 
@@ -48,6 +46,8 @@ if (envelopeIntro && openEnvelopeBtn) {
     setTimeout(() => {
       envelopeIntro.classList.add("hide");
       document.body.classList.remove("intro-active");
+      createPetalEffect();
+      document.body.classList.add("petals-active");
     }, 1850);
   });
 }
