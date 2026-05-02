@@ -584,3 +584,215 @@ body::before {
     bottom: 22px;
   }
 }
+
+/* Envelope Intro */
+
+.envelope-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at top, rgba(214, 170, 88, 0.24), transparent 36%),
+    radial-gradient(circle at bottom, rgba(244, 212, 147, 0.13), transparent 35%),
+    linear-gradient(135deg, #120d09 0%, #050403 100%);
+  transition: opacity 0.9s ease, visibility 0.9s ease;
+}
+
+.envelope-intro.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.envelope-scene {
+  width: min(520px, calc(100% - 32px));
+  text-align: center;
+  perspective: 1200px;
+}
+
+.intro-small-text {
+  margin: 0 0 28px;
+  color: var(--gold-light);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.envelope-wrap {
+  width: min(430px, 92vw);
+  height: 285px;
+  margin: 0 auto;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.envelope-back {
+  position: absolute;
+  inset: 72px 0 0;
+  border-radius: 18px;
+  background:
+    linear-gradient(145deg, #2a1b11, #110b07);
+  border: 1px solid rgba(244, 212, 147, 0.24);
+  box-shadow: 0 34px 90px rgba(0, 0, 0, 0.55);
+}
+
+.envelope-front {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 178px;
+  border-radius: 0 0 18px 18px;
+  background:
+    linear-gradient(135deg, transparent 50%, rgba(244, 212, 147, 0.14) 50%),
+    linear-gradient(225deg, transparent 50%, rgba(214, 170, 88, 0.12) 50%),
+    linear-gradient(145deg, #23160e, #100a06);
+  border: 1px solid rgba(244, 212, 147, 0.22);
+  z-index: 5;
+}
+
+.envelope-flap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 72px;
+  height: 170px;
+  background: linear-gradient(145deg, #3a2516, #15100b);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  border-top: 1px solid rgba(244, 212, 147, 0.32);
+  transform-origin: top center;
+  z-index: 7;
+  transition: transform 1.15s cubic-bezier(0.22, 1, 0.36, 1), z-index 0.2s ease;
+}
+
+.envelope-letter-glow {
+  position: absolute;
+  left: 50%;
+  bottom: 60px;
+  width: 74%;
+  height: 120px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: rgba(214, 170, 88, 0.22);
+  filter: blur(34px);
+  opacity: 0;
+  z-index: 2;
+  transition: opacity 0.8s ease;
+}
+
+.invite-note {
+  position: absolute;
+  left: 50%;
+  bottom: 58px;
+  width: 76%;
+  min-height: 178px;
+  padding: 28px 18px 22px;
+  transform: translateX(-50%) translateY(76px);
+  border-radius: 22px;
+  background:
+    linear-gradient(145deg, rgba(255, 244, 223, 0.98), rgba(244, 212, 147, 0.88));
+  color: #1b120b;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
+  z-index: 3;
+  opacity: 0;
+  transition:
+    transform 1.25s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.8s ease;
+}
+
+.invite-note span {
+  display: block;
+  font-family: "Inter", sans-serif;
+  font-size: clamp(1.45rem, 5vw, 2.35rem);
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.invite-note small {
+  display: block;
+  margin: 6px 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2rem;
+  color: #8c642a;
+}
+
+.invite-note em {
+  display: block;
+  margin-top: 16px;
+  font-style: normal;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: #5f421e;
+}
+
+.open-envelope-btn {
+  margin-top: 36px;
+  min-height: 52px;
+  padding: 0 28px;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  color: #16100a;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  font-family: "Inter", sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 16px 42px rgba(214, 170, 88, 0.3);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.4s ease;
+}
+
+.open-envelope-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 52px rgba(214, 170, 88, 0.4);
+}
+
+.envelope-intro.opened .envelope-flap {
+  transform: rotateX(178deg);
+  z-index: 1;
+}
+
+.envelope-intro.opened .invite-note {
+  transform: translateX(-50%) translateY(-74px);
+  opacity: 1;
+}
+
+.envelope-intro.opened .envelope-letter-glow {
+  opacity: 1;
+}
+
+.envelope-intro.opened .open-envelope-btn {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 520px) {
+  .envelope-wrap {
+    height: 250px;
+  }
+
+  .envelope-back {
+    inset: 66px 0 0;
+  }
+
+  .envelope-front {
+    height: 158px;
+  }
+
+  .envelope-flap {
+    top: 66px;
+    height: 150px;
+  }
+
+  .invite-note {
+    min-height: 160px;
+  }
+
+  .envelope-intro.opened .invite-note {
+    transform: translateX(-50%) translateY(-58px);
+  }
+}
