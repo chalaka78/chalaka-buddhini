@@ -499,8 +499,7 @@ body::before {
 
 .gallery-main:hover img,
 .gallery-side img:hover,
-.gallery-wide:hover img,
-.gallery-tall:hover img {
+.gallery-landscape:hover img {
   transform: scale(1.045);
   filter: brightness(1.08);
 }
