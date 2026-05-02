@@ -5,12 +5,13 @@ if (envelopeIntro && openEnvelopeBtn) {
   document.body.classList.add("intro-active");
 
   openEnvelopeBtn.addEventListener("click", () => {
+    openEnvelopeBtn.disabled = true;
     envelopeIntro.classList.add("opened");
 
     setTimeout(() => {
       envelopeIntro.classList.add("hide");
       document.body.classList.remove("intro-active");
-    }, 2300);
+    }, 1250);
   });
 }
 
