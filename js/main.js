@@ -21,7 +21,7 @@ function animateRingButtonImage() {
     lastTime = currentTime;
     const speed = ringImage.dataset.speed === "fast" ? 0.04 : 0.018;
     rotation = (rotation + delta * speed) % 360;
-    ringImage.style.transform = `rotate(${rotation}deg)`;
+    ringImage.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
     requestAnimationFrame(rotateRingButton);
   }
 
@@ -38,7 +38,7 @@ function animateRingButtonImage() {
   openEnvelopeBtn.addEventListener("click", () => {
     openEnvelopeBtn.classList.add("is-opening");
     isRunning = false;
-    ringImage.style.transform = `rotate(${rotation + 28}deg) scale(0.92)`;
+    ringImage.style.transform = `translate(-50%, -50%) rotate(${rotation + 28}deg) scale(0.92)`;
   }, { once: true });
 }
 
