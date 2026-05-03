@@ -467,40 +467,6 @@ body::before {
   transition: opacity 0.75s ease, visibility 0.75s ease;
 }
 
-.envelope-intro::before {
-  content: "";
-  position: absolute;
-  inset: -18%;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0;
-  transform: scale(0.72) rotate(0deg);
-  background:
-    radial-gradient(circle at center, rgba(255, 244, 223, 0.34), transparent 18%),
-    radial-gradient(circle at center, rgba(214, 170, 88, 0.28), transparent 38%),
-    conic-gradient(
-      from 0deg,
-      transparent 0deg,
-      rgba(214, 170, 88, 0.22) 18deg,
-      transparent 42deg,
-      transparent 72deg,
-      rgba(255, 244, 223, 0.18) 92deg,
-      transparent 126deg,
-      transparent 180deg,
-      rgba(214, 170, 88, 0.16) 210deg,
-      transparent 252deg,
-      transparent 360deg
-    );
-  filter: blur(2px);
-  transition: opacity 0.45s ease, transform 1.45s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.envelope-intro.opening-active::before {
-  opacity: 1;
-  transform: scale(1.08) rotate(18deg);
-  animation: invitationOpeningGlow 1.35s ease-in-out infinite;
-}
-
 .envelope-intro.hide {
   opacity: 0;
   visibility: hidden;
@@ -509,7 +475,6 @@ body::before {
 
 .split-invitation {
   position: relative;
-  z-index: 2;
   width: min(920px, calc(100vw - 28px));
   height: min(640px, calc(100vh - 48px));
   display: grid;
@@ -779,18 +744,6 @@ body::before {
   100% { opacity: 0; transform: rotate(85deg) scale(1.16); }
 }
 
-@keyframes invitationOpeningGlow {
-  0%, 100% {
-    opacity: 0.72;
-    filter: blur(2px) brightness(1);
-  }
-
-  50% {
-    opacity: 1;
-    filter: blur(3px) brightness(1.18);
-  }
-}
-
 .envelope-intro.opened .split-panel-left {
   transform: translateX(-105%) rotateY(-78deg) scale(0.98);
   opacity: 0.38;
@@ -820,17 +773,8 @@ body::before {
 }
 
 .page {
-  opacity: 0;
-  transform: scale(0.965) translateY(18px);
-  transform-origin: top center;
-  transition:
-    opacity 1.05s ease,
-    transform 1.05s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-body.card-opened .page {
   opacity: 1;
-  transform: scale(1) translateY(0);
+  transform: none;
 }
 
 @keyframes floatGlow {
