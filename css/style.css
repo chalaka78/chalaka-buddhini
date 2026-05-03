@@ -936,18 +936,18 @@ body.card-opened .page {
   }
 
   .intro-flower {
-    width: min(25vw, 88px);
-    max-height: 32%;
+    width: min(30vw, 110px);   /* slightly larger */
+    max-height: 38%;
   }
 
   .intro-flower-left {
-    left: 10px;
-    transform: translateY(-50%) rotate(-4deg) scale(1);
+    left: 22px;                /* move inward */
+    transform: translateY(-50%) rotate(-4deg);
   }
 
   .intro-flower-right {
-    right: 10px;
-    transform: translateY(-50%) scaleX(-1) rotate(-4deg) scale(1);
+    right: 22px;               /* move inward */
+    transform: translateY(-50%) scaleX(-1) rotate(-4deg);
   }
 
   .open-envelope-btn {
