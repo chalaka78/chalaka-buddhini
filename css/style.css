@@ -772,12 +772,12 @@ body::before {
 }
 
 .envelope-intro.opened .intro-flower-mobile-top-left {
-  transform: translate(-94vw, -50%) rotate(-14deg) scale(0.86);
+  transform: translate(-94vw, -50%) scaleY(-1) rotate(-14deg) scale(0.86);
   opacity: 0;
 }
 
 .envelope-intro.opened .intro-flower-mobile-top-right {
-  transform: translate(94vw, -50%) scaleX(-1) rotate(-14deg) scale(0.86);
+  transform: translate(94vw, -50%) scale(-1, -1) rotate(-14deg) scale(0.86);
   opacity: 0;
 }
 
@@ -956,28 +956,32 @@ body::before {
     display: block;
   }
 
+  /* Top-left: vertically flipped version of the same flower image */
+  .intro-flower-mobile-top-left {
+    top: 25%;
+    left: 20px;
+    transform: translateY(-50%) scaleY(-1) rotate(-4deg);
+  }
+
+  /* Top-right: vertically and horizontally flipped version */
+  .intro-flower-mobile-top-right {
+    top: 25%;
+    right: 20px;
+    transform: translateY(-50%) scale(-1, -1) rotate(-4deg);
+  }
+
+  /* Bottom-left: original flower image */
   .intro-flower-left {
-    top: 72%;
-    left: 24px;
+    top: 75%;
+    left: 20px;
     transform: translateY(-50%) rotate(-4deg);
   }
 
+  /* Bottom-right: horizontally flipped version */
   .intro-flower-right {
-    top: 72%;
-    right: 24px;
+    top: 75%;
+    right: 20px;
     transform: translateY(-50%) scaleX(-1) rotate(-4deg);
-  }
-
-  .intro-flower-mobile-top-left {
-    top: 28%;
-    left: 24px;
-    transform: translateY(-50%) rotate(-4deg) scale(0.92);
-  }
-
-  .intro-flower-mobile-top-right {
-    top: 28%;
-    right: 24px;
-    transform: translateY(-50%) scaleX(-1) rotate(-4deg) scale(0.92);
   }
 
   .open-envelope-btn {
