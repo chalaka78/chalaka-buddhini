@@ -1734,3 +1734,223 @@ body.petals-active .petal-layer {
     font-size: clamp(1rem, 6vw, 1.35rem);
   }
 }
+
+
+/* Final Quote Image Layout - quote directly on image after first half */
+.quote-image-section {
+  padding-top: 40px;
+  padding-bottom: 82px;
+}
+
+.quote-photo-card {
+  position: relative;
+  width: min(1040px, 100%);
+  height: clamp(680px, 62vw, 780px);
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 34px;
+  border: 1px solid rgba(214, 170, 88, 0.26);
+  background: transparent;
+  box-shadow: 0 28px 86px rgba(30, 2, 14, 0.42);
+  isolation: isolate;
+}
+
+.quote-photo-card::before {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  z-index: 4;
+  border: 1px solid rgba(244, 212, 147, 0.22);
+  border-radius: 24px;
+  pointer-events: none;
+}
+
+.quote-photo-img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center top;
+  transform: scale(1.01);
+  transition: transform 1.15s ease, filter 1.15s ease;
+}
+
+.quote-photo-card:hover .quote-photo-img {
+  transform: scale(1.045);
+  filter: brightness(1.06) saturate(1.04);
+}
+
+.quote-photo-gradient {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(214, 170, 88, 0.12), transparent 36%),
+    linear-gradient(
+      180deg,
+      rgba(30, 2, 14, 0.00) 0%,
+      rgba(30, 2, 14, 0.00) 47%,
+      rgba(30, 2, 14, 0.38) 58%,
+      rgba(91, 15, 47, 0.68) 72%,
+      rgba(30, 2, 14, 0.96) 100%
+    );
+}
+
+.quote-photo-content {
+  position: absolute;
+  left: 50%;
+  top: 56%;
+  bottom: auto;
+  z-index: 3;
+  width: min(800px, calc(100% - 78px));
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  border: 0;
+  border-radius: 0;
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  transform: translateX(-50%);
+  animation: quoteOnImageRise 0.95s ease both;
+}
+
+.quote-photo-kicker,
+.quote-photo-signature {
+  display: block;
+  color: var(--gold-light);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.78),
+    0 0 16px rgba(214, 170, 88, 0.36);
+}
+
+.quote-photo-text {
+  max-width: 760px;
+  margin: 12px auto 14px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.42rem, 2.35vw, 2.25rem);
+  line-height: 1.26;
+  font-weight: 600;
+  color: var(--white);
+  text-shadow:
+    0 10px 32px rgba(0, 0, 0, 0.82),
+    0 0 26px rgba(214, 170, 88, 0.28);
+}
+
+.quote-photo-signature {
+  font-family: "Parisienne", "Great Vibes", cursive;
+  font-size: clamp(1.12rem, 1.8vw, 1.58rem);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: none;
+}
+
+@media (max-width: 820px) {
+  .quote-image-section {
+    width: min(100% - 28px, 1120px);
+    padding-top: 34px;
+    padding-bottom: 64px;
+  }
+
+  .quote-photo-card {
+    height: 690px;
+    border-radius: 28px;
+  }
+
+  .quote-photo-card::before {
+    inset: 14px;
+    border-radius: 20px;
+  }
+
+  .quote-photo-gradient {
+    background:
+      radial-gradient(circle at 50% 14%, rgba(214, 170, 88, 0.10), transparent 36%),
+      linear-gradient(
+        180deg,
+        rgba(30, 2, 14, 0.00) 0%,
+        rgba(30, 2, 14, 0.00) 45%,
+        rgba(30, 2, 14, 0.42) 58%,
+        rgba(91, 15, 47, 0.74) 74%,
+        rgba(30, 2, 14, 0.98) 100%
+      );
+  }
+
+  .quote-photo-content {
+    top: 54%;
+    width: calc(100% - 48px);
+  }
+
+  .quote-photo-text {
+    font-size: clamp(1.28rem, 4.35vw, 2rem);
+    line-height: 1.28;
+  }
+}
+
+@media (max-width: 520px) {
+  .quote-image-section {
+    width: min(100% - 24px, 1120px);
+    padding-top: 26px;
+    padding-bottom: 56px;
+  }
+
+  .quote-photo-card {
+    height: 660px;
+    border-radius: 24px;
+  }
+
+  .quote-photo-card::before {
+    inset: 10px;
+    border-radius: 18px;
+  }
+
+  .quote-photo-img {
+    object-position: center top;
+    transform: scale(1.01);
+  }
+
+  .quote-photo-card:hover .quote-photo-img {
+    transform: scale(1.025);
+  }
+
+  .quote-photo-gradient {
+    background:
+      radial-gradient(circle at 50% 10%, rgba(214, 170, 88, 0.08), transparent 34%),
+      linear-gradient(
+        180deg,
+        rgba(30, 2, 14, 0.00) 0%,
+        rgba(30, 2, 14, 0.00) 42%,
+        rgba(30, 2, 14, 0.48) 58%,
+        rgba(91, 15, 47, 0.80) 74%,
+        rgba(30, 2, 14, 0.98) 100%
+      );
+  }
+
+  .quote-photo-content {
+    top: 53%;
+    width: calc(100% - 34px);
+  }
+
+  .quote-photo-kicker,
+  .quote-photo-signature {
+    font-size: 0.5rem;
+    letter-spacing: 0.11em;
+  }
+
+  .quote-photo-text {
+    margin: 10px auto 12px;
+    font-size: clamp(1.08rem, 5.25vw, 1.43rem);
+    line-height: 1.31;
+  }
+
+  .quote-photo-signature {
+    font-size: clamp(0.98rem, 5.5vw, 1.28rem);
+  }
+}
