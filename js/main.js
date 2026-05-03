@@ -99,14 +99,18 @@ if (envelopeIntro && openEnvelopeBtn) {
   openEnvelopeBtn.addEventListener("click", () => {
     openEnvelopeBtn.disabled = true;
     envelopeIntro.classList.add("opened");
+    envelopeIntro.setAttribute("aria-hidden", "true");
+
+    /* Reveal the real page immediately behind the splitting cover. */
+    document.body.classList.remove("intro-active");
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
 
     createPetalEffect();
     document.body.classList.add("petals-active");
 
     setTimeout(() => {
       envelopeIntro.classList.add("hide");
-      document.body.classList.remove("intro-active");
-    }, 1600);
+    }, 1500);
   });
 }
 
