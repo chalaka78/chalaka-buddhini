@@ -2008,3 +2008,50 @@ body.petals-active .petal-layer {
       );
   }
 }
+/* Desktop Quote Image Natural Height Fix - use full image ratio and quote on lower gradient */
+@media (min-width: 821px) {
+  .quote-photo-card {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: hidden;
+  }
+
+  .quote-photo-img {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    object-fit: contain !important;
+    object-position: center top !important;
+    transform: none !important;
+  }
+
+  .quote-photo-card:hover .quote-photo-img {
+    transform: none !important;
+    filter: brightness(1.04) saturate(1.04);
+  }
+
+  .quote-photo-gradient {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 50% 18%, rgba(214, 170, 88, 0.10), transparent 34%),
+      linear-gradient(
+        180deg,
+        rgba(30, 2, 14, 0.00) 0%,
+        rgba(30, 2, 14, 0.00) 44%,
+        rgba(30, 2, 14, 0.34) 58%,
+        rgba(91, 15, 47, 0.72) 74%,
+        rgba(30, 2, 14, 0.98) 100%
+      );
+  }
+
+  .quote-photo-content {
+    top: auto !important;
+    bottom: clamp(46px, 5.8vw, 88px) !important;
+    width: min(820px, calc(100% - 96px));
+  }
+}
