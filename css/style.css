@@ -1416,3 +1416,108 @@ body.petals-active .petal-layer {
     animation-duration: calc(var(--duration) * 1.08);
   }
 }
+
+/* Quote Image Gradient Responsive Overrides */
+@media (max-width: 820px) {
+  .quote-image-section {
+    width: min(100% - 28px, 1120px);
+    padding-top: 34px;
+    padding-bottom: 64px;
+  }
+
+  .quote-photo-card {
+    min-height: 690px;
+    border-radius: 28px;
+  }
+
+  .quote-photo-card::before {
+    inset: 14px;
+    border-radius: 20px;
+  }
+
+  .quote-photo-img {
+    object-position: center top;
+  }
+
+  .quote-photo-gradient {
+    background:
+      radial-gradient(circle at 50% 14%, rgba(214, 170, 88, 0.10), transparent 34%),
+      linear-gradient(
+        180deg,
+        rgba(30, 2, 14, 0.00) 0%,
+        rgba(30, 2, 14, 0.02) 46%,
+        rgba(91, 15, 47, 0.38) 70%,
+        rgba(30, 2, 14, 0.86) 100%
+      );
+  }
+
+  .quote-photo-content {
+    width: calc(100% - 46px);
+    bottom: 30px;
+  }
+
+  .quote-photo-text {
+    font-size: clamp(1.45rem, 4.8vw, 2.25rem);
+    line-height: 1.18;
+  }
+}
+
+@media (max-width: 520px) {
+  .quote-image-section {
+    width: min(100% - 24px, 1120px);
+    padding-top: 26px;
+    padding-bottom: 56px;
+  }
+
+  .quote-photo-card {
+    min-height: 640px;
+    border-radius: 24px;
+  }
+
+  .quote-photo-card::before {
+    inset: 10px;
+    border-radius: 18px;
+  }
+
+  .quote-photo-img {
+    object-position: center top;
+    transform: scale(1.01);
+  }
+
+  .quote-photo-card:hover .quote-photo-img {
+    transform: scale(1.025);
+  }
+
+  .quote-photo-gradient {
+    background:
+      radial-gradient(circle at 50% 12%, rgba(214, 170, 88, 0.08), transparent 34%),
+      linear-gradient(
+        180deg,
+        rgba(30, 2, 14, 0.00) 0%,
+        rgba(30, 2, 14, 0.01) 44%,
+        rgba(91, 15, 47, 0.34) 68%,
+        rgba(30, 2, 14, 0.90) 100%
+      );
+  }
+
+  .quote-photo-content {
+    width: calc(100% - 32px);
+    bottom: 24px;
+  }
+
+  .quote-photo-kicker,
+  .quote-photo-signature {
+    font-size: 0.52rem;
+    letter-spacing: 0.12em;
+  }
+
+  .quote-photo-text {
+    margin: 10px auto 12px;
+    font-size: clamp(1.22rem, 6.2vw, 1.68rem);
+    line-height: 1.17;
+  }
+
+  .quote-photo-signature {
+    font-size: clamp(1rem, 6vw, 1.38rem);
+  }
+}
