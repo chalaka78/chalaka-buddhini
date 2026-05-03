@@ -601,21 +601,26 @@ body::before {
   transform: translateX(6%) scaleX(-1);
 }
 
+/* Ring Image Open Button */
 .open-envelope-btn {
   position: absolute;
   left: 50%;
   top: 50%;
   z-index: 8;
-  width: 142px;
-  height: 142px;
+  width: 144px;
+  height: 144px;
   padding: 0;
   border: 0;
   border-radius: 50%;
   cursor: pointer;
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
+  transform-origin: center center;
   background: transparent;
+  display: grid;
+  place-items: center;
+  overflow: visible;
   box-shadow:
-    0 0 0 10px rgba(214, 170, 88, 0.15),
+    0 0 0 10px rgba(214, 170, 88, 0.14),
     0 0 0 22px rgba(255, 255, 255, 0.045),
     0 28px 70px rgba(0, 0, 0, 0.38),
     0 0 42px rgba(214, 170, 88, 0.28);
@@ -623,38 +628,29 @@ body::before {
     transform 0.32s ease,
     box-shadow 0.32s ease,
     opacity 0.3s ease;
-  overflow: visible;
 }
 
 .open-envelope-btn::before {
   content: "";
   position: absolute;
-  inset: -13px;
+  inset: -18px;
   border-radius: 50%;
-  background:
-    conic-gradient(
-      from 0deg,
-      transparent 0 16deg,
-      rgba(214, 170, 88, 0.75) 17deg 20deg,
-      transparent 21deg 38deg
-    );
-  opacity: 0.42;
-  filter: blur(0.2px);
-  animation: ringHaloRotate 9s linear infinite;
+  background: radial-gradient(circle, rgba(214, 170, 88, 0.22), transparent 66%);
+  filter: blur(12px);
+  opacity: 0.78;
+  animation: ringGlowPulse 3.8s ease-in-out infinite;
   pointer-events: none;
+  z-index: -1;
 }
 
 .open-envelope-btn::after {
   content: "";
   position: absolute;
-  inset: -22px;
+  inset: 0;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(214, 170, 88, 0.24), transparent 66%);
-  filter: blur(10px);
-  opacity: 0.78;
-  animation: ringGlowPulse 3.8s ease-in-out infinite;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.24), transparent 32%, rgba(91, 15, 47, 0.18) 100%);
   pointer-events: none;
-  z-index: -1;
+  z-index: 3;
 }
 
 .open-envelope-btn img {
@@ -666,7 +662,9 @@ body::before {
   border-radius: 50%;
   object-fit: cover;
   object-position: center;
-  animation: ringButtonRotate 16s linear infinite;
+  transform-origin: 50% 50%;
+  will-change: transform;
+  backface-visibility: hidden;
   filter:
     drop-shadow(0 14px 22px rgba(0, 0, 0, 0.38))
     drop-shadow(0 0 16px rgba(214, 170, 88, 0.34));
@@ -675,7 +673,7 @@ body::before {
 }
 
 .open-envelope-btn:hover {
-  transform: translate(-50%, -50%) scale(1.075);
+  transform: translate3d(-50%, -50%, 0) scale(1.075);
   box-shadow:
     0 0 0 14px rgba(214, 170, 88, 0.18),
     0 0 0 30px rgba(255, 255, 255, 0.055),
@@ -683,32 +681,12 @@ body::before {
     0 0 58px rgba(214, 170, 88, 0.38);
 }
 
-.open-envelope-btn:hover img {
-  animation-duration: 9s;
-}
-
 .open-envelope-btn:active {
-  transform: translate(-50%, -50%) scale(0.96);
+  transform: translate3d(-50%, -50%, 0) scale(0.96);
 }
 
-@keyframes ringButtonRotate {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes ringHaloRotate {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(-360deg);
-  }
+.open-envelope-btn.is-opening img {
+  transition: transform 0.42s ease;
 }
 
 @keyframes ringGlowPulse {
