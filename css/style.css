@@ -110,6 +110,7 @@ body::before {
   border: 1px solid rgba(214, 170, 88, 0.24);
   border-radius: 26px;
   pointer-events: none;
+  transition: opacity 0.45s ease;
 }
 
 .eyebrow {
@@ -464,7 +465,15 @@ body::before {
     radial-gradient(circle at center, rgba(255, 244, 223, 0.22), transparent 34%),
     linear-gradient(135deg, #3f0820 0%, var(--burgundy) 48%, #3f0820 100%);
   perspective: 1800px;
-  transition: opacity 0.75s ease, visibility 0.75s ease;
+  transition:
+    background 0.45s ease,
+    opacity 0.75s ease,
+    visibility 0.75s ease;
+}
+
+.envelope-intro.opened {
+  background: transparent;
+  pointer-events: none;
 }
 
 .envelope-intro.hide {
@@ -494,6 +503,7 @@ body::before {
   filter: blur(18px);
   opacity: 0.72;
   pointer-events: none;
+  transition: opacity 0.45s ease;
 }
 
 .split-invitation::after {
@@ -506,6 +516,12 @@ body::before {
   box-shadow:
     0 34px 100px rgba(30, 2, 14, 0.48),
     inset 0 0 0 1px rgba(255, 244, 223, 0.08);
+  transition: opacity 0.45s ease;
+}
+
+.envelope-intro.opened .split-invitation::before,
+.envelope-intro.opened .split-invitation::after {
+  opacity: 0;
 }
 
 .split-panel {
