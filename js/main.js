@@ -1,7 +1,5 @@
 const envelopeIntro = document.getElementById("envelopeIntro");
 const openEnvelopeBtn = document.getElementById("openEnvelopeBtn");
-const heroCoupleStage = document.getElementById("heroCoupleStage");
-const heroCard = document.querySelector(".hero-card");
 
 function animateRingButtonImage() {
   const ringImage = openEnvelopeBtn ? openEnvelopeBtn.querySelector("img") : null;
@@ -95,73 +93,6 @@ function createPetalEffect() {
   document.body.appendChild(petalLayer);
 }
 
-function createHeroParticles() {
-  if (!heroCoupleStage || heroCoupleStage.querySelector(".hero-gold-particle")) {
-    return;
-  }
-
-  const particleCount = window.matchMedia("(max-width: 520px)").matches ? 12 : 18;
-
-  for (let i = 0; i < particleCount; i += 1) {
-    const particle = document.createElement("span");
-    particle.className = "hero-gold-particle";
-    particle.setAttribute("aria-hidden", "true");
-    particle.style.setProperty("--particle-x", `${12 + Math.random() * 76}%`);
-    particle.style.setProperty("--particle-y", `${12 + Math.random() * 74}%`);
-    particle.style.setProperty("--particle-size", `${3 + Math.random() * 4}px`);
-    particle.style.setProperty("--particle-duration", `${3.8 + Math.random() * 3.8}s`);
-    particle.style.setProperty("--particle-delay", `${Math.random() * -5}s`);
-    particle.style.setProperty("--particle-drift", `${-22 + Math.random() * 44}px`);
-    heroCoupleStage.appendChild(particle);
-  }
-}
-
-createHeroParticles();
-
-function addHeroMouseMotion() {
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  if (prefersReducedMotion || !heroCoupleStage) {
-    return;
-  }
-
-  const coupleImage = heroCoupleStage.querySelector(".hero-couple-img");
-
-  heroCoupleStage.addEventListener("mousemove", (event) => {
-    const rect = heroCoupleStage.getBoundingClientRect();
-    const x = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
-    const y = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
-
-    if (coupleImage) {
-      coupleImage.style.transform = `translate3d(${x * 8}px, ${y * -7}px, 0) rotate(${x * 1.2}deg)`;
-    }
-
-    heroCoupleStage.style.setProperty("--mouse-x", `${50 + x * 8}%`);
-    heroCoupleStage.style.setProperty("--mouse-y", `${50 + y * 8}%`);
-  });
-
-  heroCoupleStage.addEventListener("mouseleave", () => {
-    if (coupleImage) {
-      coupleImage.style.transform = "";
-    }
-  });
-
-  if (heroCard) {
-    heroCard.addEventListener("mousemove", (event) => {
-      const rect = heroCard.getBoundingClientRect();
-      const x = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
-      const y = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
-      heroCard.style.transform = `rotateX(${y * -2.2}deg) rotateY(${x * 2.2}deg)`;
-    });
-
-    heroCard.addEventListener("mouseleave", () => {
-      heroCard.style.transform = "";
-    });
-  }
-}
-
-addHeroMouseMotion();
-
 if (envelopeIntro && openEnvelopeBtn) {
   document.body.classList.add("intro-active");
 
@@ -170,6 +101,7 @@ if (envelopeIntro && openEnvelopeBtn) {
     envelopeIntro.classList.add("opened");
     envelopeIntro.setAttribute("aria-hidden", "true");
 
+    /* Reveal the real page immediately behind the splitting cover. */
     document.body.classList.remove("intro-active");
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
 
