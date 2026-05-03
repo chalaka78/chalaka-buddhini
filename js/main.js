@@ -1,6 +1,49 @@
 const envelopeIntro = document.getElementById("envelopeIntro");
 const openEnvelopeBtn = document.getElementById("openEnvelopeBtn");
 
+function animateRingButtonImage() {
+  const ringImage = openEnvelopeBtn ? openEnvelopeBtn.querySelector("img") : null;
+
+  if (!ringImage) {
+    return;
+  }
+
+  let rotation = 0;
+  let lastTime = performance.now();
+  let isRunning = true;
+
+  function rotateRingButton(currentTime) {
+    if (!isRunning) {
+      return;
+    }
+
+    const delta = currentTime - lastTime;
+    lastTime = currentTime;
+    const speed = ringImage.dataset.speed === "fast" ? 0.04 : 0.018;
+    rotation = (rotation + delta * speed) % 360;
+    ringImage.style.transform = `rotate(${rotation}deg)`;
+    requestAnimationFrame(rotateRingButton);
+  }
+
+  requestAnimationFrame(rotateRingButton);
+
+  openEnvelopeBtn.addEventListener("mouseenter", () => {
+    ringImage.dataset.speed = "fast";
+  });
+
+  openEnvelopeBtn.addEventListener("mouseleave", () => {
+    ringImage.dataset.speed = "normal";
+  });
+
+  openEnvelopeBtn.addEventListener("click", () => {
+    openEnvelopeBtn.classList.add("is-opening");
+    isRunning = false;
+    ringImage.style.transform = `rotate(${rotation + 28}deg) scale(0.92)`;
+  }, { once: true });
+}
+
+animateRingButtonImage();
+
 function createPetalEffect() {
   if (document.querySelector(".petal-layer")) {
     return;
