@@ -935,18 +935,20 @@ body.card-opened .page {
     border-radius: 0 22px 22px 0;
   }
 
-.intro-flower {
-  width: min(34vw, 128px);
-  max-height: 42%;
-}
+  .intro-flower {
+    width: min(25vw, 88px);
+    max-height: 32%;
+  }
 
-.intro-flower-left {
-  left: 16px;
-}
+  .intro-flower-left {
+    left: 10px;
+    transform: translateY(-50%) rotate(-4deg) scale(1);
+  }
 
-.intro-flower-right {
-  right: 16px;
-}
+  .intro-flower-right {
+    right: 10px;
+    transform: translateY(-50%) scaleX(-1) rotate(-4deg) scale(1);
+  }
 
   .open-envelope-btn {
     width: 118px;
