@@ -151,34 +151,60 @@ body::before {
   text-transform: uppercase;
 }
 
-.names {
+ .names {
   margin: 0;
-  font-family: "Great Vibes", "Cormorant Garamond", serif;
-  font-size: clamp(4.1rem, 7.1vw, 7.1rem);
-  line-height: 1.02;
+  padding: 8px 0 4px;
+  font-family: "Parisienne", "Great Vibes", "Cormorant Garamond", serif;
+  font-size: clamp(4.4rem, 6.2vw, 7.35rem);
+  line-height: 1.14;
   font-weight: 400;
-  letter-spacing: 0.015em;
-  color: var(--white);
+  letter-spacing: 0.01em;
+  color: var(--gold-light);
   text-shadow:
-    0 18px 45px rgba(91, 15, 47, 0.38),
-    0 0 22px rgba(214, 170, 88, 0.18);
+    0 4px 0 rgba(91, 15, 47, 0.34),
+    0 16px 36px rgba(30, 2, 14, 0.44),
+    0 0 24px rgba(214, 170, 88, 0.30),
+    0 0 46px rgba(214, 170, 88, 0.18);
 }
 
 .names span {
   display: block;
-  padding: 0 8px;
+  padding: 8px 14px 12px;
+}
+
+.names span:not(.ampersand) {
+  background: linear-gradient(
+    92deg,
+    #9f6f24 0%,
+    #d6aa58 18%,
+    #fff1bd 38%,
+    #f8d980 52%,
+    #b87a26 72%,
+    #fff3c8 88%,
+    #d6aa58 100%
+  );
+  background-size: 240% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: nameGoldShine 4.8s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px rgba(214, 170, 88, 0.28));
 }
 
 .ampersand {
   display: block;
-  margin: 4px 0 10px;
+  margin: -2px 0 2px;
+  padding: 0;
   font-family: "Cormorant Garamond", serif;
-  font-size: clamp(2.2rem, 4.4vw, 3.8rem);
+  font-size: clamp(2.1rem, 4vw, 3.5rem);
   color: var(--gold);
   font-weight: 500;
-  line-height: 0.82;
+  line-height: 0.8;
   letter-spacing: 0;
-}
+  text-shadow:
+    0 0 18px rgba(214, 170, 88, 0.46),
+    0 10px 24px rgba(30, 2, 14, 0.42);
+} 
 
 .subtitle {
   max-width: 620px;
@@ -995,6 +1021,12 @@ body.petals-active .petal-layer {
   86% { transform: translateX(130%); opacity: 0; }
 }
 
+
+@keyframes nameGoldShine {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 100% center; }
+}
+
 @keyframes coupleFloat {
   0%, 100% { transform: translateY(0) rotate(0deg); }
   50% { transform: translateY(-14px) rotate(0.6deg); }
@@ -1196,13 +1228,18 @@ body.petals-active .petal-layer {
   }
 
   .names {
-    font-size: clamp(3.25rem, 16vw, 4.8rem);
-    line-height: 1.04;
-    letter-spacing: 0.01em;
+    font-size: clamp(3.55rem, 17vw, 5.2rem);
+    line-height: 1.12;
+    letter-spacing: 0;
+    padding-top: 4px;
+  }
+
+  .names span {
+    padding: 5px 8px 9px;
   }
 
   .ampersand {
-    margin: 2px 0 8px;
+    margin: -2px 0 4px;
   }
 
   .date-box {
