@@ -1745,7 +1745,7 @@ body.petals-active .petal-layer {
 .quote-photo-card {
   position: relative;
   width: min(1040px, 100%);
-  height: clamp(680px, 62vw, 780px);
+  height: clamp(820px, 72vw, 980px);
   margin: 0 auto;
   overflow: hidden;
   border-radius: 34px;
