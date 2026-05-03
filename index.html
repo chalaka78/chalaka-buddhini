@@ -7,7 +7,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Parisienne&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Inter:wght@300;400;500;600;700&family=Parisienne&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="css/style.css" />
   <script src="js/main.js" defer></script>
@@ -31,28 +31,51 @@
 
   <main class="page">
     <section class="hero">
-      <div class="invitation-card reveal active">
-        <p class="eyebrow">Together with their families</p>
+      <div class="hero-layout reveal active">
+        <div class="invitation-card hero-card">
+          <p class="eyebrow">Together with their families</p>
 
-        <h1 class="names">
-          <span>CHALAKA</span>
-          <span class="ampersand">&</span>
-          <span>BUDDHINI</span>
-        </h1>
+          <h1 class="names">
+            <span>Chalaka</span>
+            <span class="ampersand">&</span>
+            <span>Buddhini</span>
+          </h1>
 
-        <p class="subtitle">
-          Joyfully invite you to celebrate the beginning of their forever, surrounded by love, blessings, and beautiful memories.
-        </p>
+          <p class="subtitle">
+            Joyfully invite you to celebrate the beginning of their forever, surrounded by love, blessings, and beautiful memories.
+          </p>
 
-        <div class="date-row">
-          <div class="date-line"></div>
-          <div class="date-box">31 July 2026</div>
-          <div class="date-line"></div>
+          <div class="date-row">
+            <div class="date-line"></div>
+            <div class="date-box">31 July 2026</div>
+            <div class="date-line"></div>
+          </div>
+
+          <div class="actions">
+            <a class="btn" href="#details">View Details</a>
+            <a class="btn secondary" href="https://maps.app.goo.gl/e7iPafdMdp5ST1J27" target="_blank" rel="noopener">Open Location</a>
+          </div>
         </div>
 
-        <div class="actions">
-          <a class="btn" href="#details">View Details</a>
-          <a class="btn secondary" href="https://maps.app.goo.gl/e7iPafdMdp5ST1J27" target="_blank" rel="noopener">Open Location</a>
+        <div class="hero-couple-stage" id="heroCoupleStage" aria-label="Wedding couple illustration">
+          <div class="hero-couple-ring hero-couple-ring-one"></div>
+          <div class="hero-couple-ring hero-couple-ring-two"></div>
+          <div class="hero-couple-glow"></div>
+
+          <div class="hero-sparkles" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <img class="hero-couple-img" src="images/weddinghome.webp" alt="Chalaka and Buddhini wedding illustration" />
+
+          <div class="hero-couple-caption">
+            <span>With blessings and love</span>
+            <strong>Our Forever Begins</strong>
+          </div>
         </div>
       </div>
     </section>
@@ -61,7 +84,7 @@
       <div class="quote-photo-card">
         <div class="quote-photo-image-wrap">
           <img src="images/eng1.webp" alt="Chalaka and Buddhini" />
-          <span class="quote-photo-image-glow" aria-hidden="true"></span>
+          <div class="quote-photo-image-glow" aria-hidden="true"></div>
         </div>
 
         <div class="quote-photo-content">
