@@ -560,65 +560,24 @@ body::before {
   left: 0;
 }
 
-.panel-image {
-  position: absolute;
-  inset: clamp(28px, 5vw, 72px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  opacity: 0.98;
-  z-index: 2;
-}
-
-.panel-image::before {
-  content: "";
-  position: absolute;
-  inset: -8%;
-  border-radius: 34px;
-  background:
-    radial-gradient(circle at center, rgba(214, 170, 88, 0.18), transparent 58%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 70%);
-  filter: blur(2px);
-  opacity: 0.72;
-}
-
-.panel-image img {
-  position: relative;
-  z-index: 1;
-  width: min(36vw, 430px);
-  max-width: 86%;
-  height: min(82vh, 760px);
-  object-fit: contain;
-  object-position: center;
-  filter:
-    drop-shadow(0 22px 34px rgba(0, 0, 0, 0.28))
-    drop-shadow(0 0 22px rgba(214, 170, 88, 0.18));
-  transform: translateX(-6%);
-}
-
-.split-panel-right .panel-image img {
-  transform: translateX(6%) scaleX(-1);
-}
-
 /* Ring Image Open Button */
 .open-envelope-btn {
   position: absolute;
   left: 50%;
   top: 50%;
   z-index: 8;
-  width: 144px;
-  height: 144px;
+  width: 148px;
+  height: 148px;
   padding: 0;
+  margin: 0;
   border: 0;
   border-radius: 50%;
   cursor: pointer;
-  transform: translate3d(-50%, -50%, 0);
+  transform: translate(-50%, -50%);
   transform-origin: center center;
   background: transparent;
-  display: grid;
-  place-items: center;
-  overflow: visible;
+  display: block;
+  overflow: hidden;
   box-shadow:
     0 0 0 10px rgba(214, 170, 88, 0.14),
     0 0 0 22px rgba(255, 255, 255, 0.045),
@@ -640,28 +599,26 @@ body::before {
   opacity: 0.78;
   animation: ringGlowPulse 3.8s ease-in-out infinite;
   pointer-events: none;
-  z-index: -1;
+  z-index: 0;
 }
 
 .open-envelope-btn::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.24), transparent 32%, rgba(91, 15, 47, 0.18) 100%);
-  pointer-events: none;
-  z-index: 3;
+  display: none;
 }
 
 .open-envelope-btn img {
-  position: relative;
+  position: absolute;
+  left: 50%;
+  top: 50%;
   z-index: 2;
   display: block;
-  width: 100%;
-  height: 100%;
+  width: 168%;
+  height: 168%;
+  max-width: none;
   border-radius: 50%;
   object-fit: cover;
-  object-position: center;
+  object-position: center 42%;
+  transform: translate(-50%, -50%) rotate(0deg);
   transform-origin: 50% 50%;
   will-change: transform;
   backface-visibility: hidden;
@@ -673,7 +630,7 @@ body::before {
 }
 
 .open-envelope-btn:hover {
-  transform: translate3d(-50%, -50%, 0) scale(1.075);
+  transform: translate(-50%, -50%) scale(1.075);
   box-shadow:
     0 0 0 14px rgba(214, 170, 88, 0.18),
     0 0 0 30px rgba(255, 255, 255, 0.055),
@@ -682,23 +639,11 @@ body::before {
 }
 
 .open-envelope-btn:active {
-  transform: translate3d(-50%, -50%, 0) scale(0.96);
+  transform: translate(-50%, -50%) scale(0.96);
 }
 
 .open-envelope-btn.is-opening img {
   transition: transform 0.42s ease;
-}
-
-@keyframes ringGlowPulse {
-  0%, 100% {
-    opacity: 0.55;
-    transform: scale(0.96);
-  }
-
-  50% {
-    opacity: 0.95;
-    transform: scale(1.06);
-  }
 }
 
 .open-envelope-btn:disabled {
@@ -895,24 +840,15 @@ body::before {
 
 /* Split Invitation Mobile Refinements */
 @media (max-width: 520px) {
-  .panel-image {
-    inset: 18px 4px;
-  }
-
-  .panel-image img {
-    width: 43vw;
-    max-width: 96%;
-    height: 78vh;
-    transform: translateX(-10%);
-  }
-
-  .split-panel-right .panel-image img {
-    transform: translateX(10%) scaleX(-1);
-  }
-
   .open-envelope-btn {
-    width: 106px;
-    height: 106px;
+    width: 108px;
+    height: 108px;
+  }
+
+  .open-envelope-btn img {
+    width: 174%;
+    height: 174%;
+    object-position: center 42%;
   }
 }
 
