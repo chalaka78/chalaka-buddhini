@@ -114,6 +114,37 @@ if (envelopeIntro && openEnvelopeBtn) {
   });
 }
 
+
+
+function addQuoteImageMotion() {
+  const quoteCard = document.querySelector(".quote-photo-card");
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (!quoteCard || prefersReducedMotion) {
+    return;
+  }
+
+  const quoteImage = quoteCard.querySelector("img");
+
+  quoteCard.addEventListener("mousemove", (event) => {
+    const rect = quoteCard.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
+    const y = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
+
+    if (quoteImage) {
+      quoteImage.style.transform = `scale(1.055) translate3d(${x * -8}px, ${y * -6}px, 0)`;
+    }
+  });
+
+  quoteCard.addEventListener("mouseleave", () => {
+    if (quoteImage) {
+      quoteImage.style.transform = "";
+    }
+  });
+}
+
+addQuoteImageMotion();
+
 const weddingDate = new Date("2026-07-31T00:00:00+05:30").getTime();
 
 function updateCountdown() {
