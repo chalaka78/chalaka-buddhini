@@ -11,6 +11,7 @@ function animateRingButtonImage() {
   let rotation = 0;
   let lastTime = performance.now();
   let isRunning = true;
+  let isHovering = false;
 
   function rotateRingButton(currentTime) {
     if (!isRunning) {
@@ -19,26 +20,39 @@ function animateRingButtonImage() {
 
     const delta = currentTime - lastTime;
     lastTime = currentTime;
-    const speed = ringImage.dataset.speed === "fast" ? 0.04 : 0.018;
+
+    const speed = isHovering ? 0.04 : 0.018;
+    const pulse = 1 + Math.sin(currentTime / 520) * 0.025;
+
     rotation = (rotation + delta * speed) % 360;
-    ringImage.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
+    ringImage.style.transform = `rotate(${rotation}deg) scale(${pulse})`;
+
     requestAnimationFrame(rotateRingButton);
   }
 
   requestAnimationFrame(rotateRingButton);
 
   openEnvelopeBtn.addEventListener("mouseenter", () => {
-    ringImage.dataset.speed = "fast";
+    isHovering = true;
+    openEnvelopeBtn.classList.add("is-hovering");
   });
 
   openEnvelopeBtn.addEventListener("mouseleave", () => {
-    ringImage.dataset.speed = "normal";
+    isHovering = false;
+    openEnvelopeBtn.classList.remove("is-hovering");
+  });
+
+  openEnvelopeBtn.addEventListener("pointerdown", () => {
+    openEnvelopeBtn.classList.remove("is-clicked");
+    void openEnvelopeBtn.offsetWidth;
+    openEnvelopeBtn.classList.add("is-clicked");
   });
 
   openEnvelopeBtn.addEventListener("click", () => {
     openEnvelopeBtn.classList.add("is-opening");
     isRunning = false;
-    ringImage.style.transform = `translate(-50%, -50%) rotate(${rotation + 28}deg) scale(0.92)`;
+    ringImage.style.transform = `rotate(${rotation + 34}deg) scale(0.72)`;
+    ringImage.style.opacity = "0.92";
   }, { once: true });
 }
 
