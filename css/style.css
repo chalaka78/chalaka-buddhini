@@ -1358,3 +1358,111 @@ body.petals-active .petal-layer {
     animation-duration: calc(var(--duration) * 1.08);
   }
 }
+
+/* Final Quote Image Mobile Fix - keep these rules at the end of the file */
+@media (max-width: 820px) {
+  .quote-image-section {
+    width: min(100% - 28px, 1120px);
+    padding-top: 34px;
+    padding-bottom: 58px;
+  }
+
+  .quote-image-section .single-photo {
+    width: 100%;
+    height: 620px;
+    min-height: 620px;
+    border-radius: 28px;
+  }
+
+  .quote-image-section .single-photo img {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .quote-image-section .image-quote {
+    width: calc(100% - 34px);
+    bottom: 22px;
+    padding: 22px 18px;
+    border-radius: 24px;
+  }
+}
+
+@media (max-width: 520px) {
+  .quote-image-section {
+    width: min(100% - 24px, 1120px);
+    padding-top: 22px;
+    padding-bottom: 52px;
+  }
+
+  .quote-image-section .single-photo {
+    height: 600px;
+    min-height: 600px;
+    border-radius: 24px;
+    box-shadow: 0 22px 58px rgba(30, 2, 14, 0.38);
+  }
+
+  .quote-image-section .single-photo img {
+    height: 100%;
+    min-height: 0;
+    object-fit: cover;
+    object-position: center top;
+    transform: scale(1.02);
+  }
+
+  .quote-image-section .quote-photo::before {
+    background:
+      radial-gradient(circle at 50% 10%, rgba(214, 170, 88, 0.12), transparent 30%),
+      linear-gradient(180deg, rgba(30, 2, 14, 0.06) 0%, rgba(91, 15, 47, 0.24) 42%, rgba(30, 2, 14, 0.86) 100%);
+  }
+
+  .quote-image-section .quote-photo::after {
+    inset: 10px;
+    border-radius: 17px;
+  }
+
+  .quote-image-section .image-quote {
+    width: calc(100% - 24px);
+    left: 50%;
+    right: auto;
+    bottom: 14px;
+    padding: 18px 14px 16px;
+    border-radius: 20px;
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05)),
+      rgba(91, 15, 47, 0.64);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .quote-image-section .quote-kicker,
+  .quote-image-section .quote-mark {
+    font-size: 0.55rem;
+    letter-spacing: 0.12em;
+  }
+
+  .quote-image-section .quote-text {
+    margin: 11px auto 13px;
+    font-size: clamp(1.45rem, 7.4vw, 2.1rem);
+    line-height: 1.18;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 380px) {
+  .quote-image-section .single-photo {
+    height: 570px;
+    min-height: 570px;
+  }
+
+  .quote-image-section .quote-text {
+    font-size: clamp(1.32rem, 7vw, 1.85rem);
+  }
+
+  .quote-image-section .image-quote {
+    padding: 16px 12px 14px;
+  }
+}
+
