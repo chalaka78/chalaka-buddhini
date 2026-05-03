@@ -612,6 +612,11 @@ body::before {
   transform: translateY(-50%) scaleX(-1) rotate(-4deg) scale(1);
 }
 
+.intro-flower-mobile-top-left,
+.intro-flower-mobile-top-right {
+  display: none;
+}
+
 /* Ring Image Open Button */
 .open-envelope-btn {
   position: absolute;
@@ -763,6 +768,16 @@ body::before {
 
 .envelope-intro.opened .intro-flower-right {
   transform: translate(94vw, -50%) scaleX(-1) rotate(-14deg) scale(0.94);
+  opacity: 0;
+}
+
+.envelope-intro.opened .intro-flower-mobile-top-left {
+  transform: translate(-94vw, -50%) rotate(-14deg) scale(0.86);
+  opacity: 0;
+}
+
+.envelope-intro.opened .intro-flower-mobile-top-right {
+  transform: translate(94vw, -50%) scaleX(-1) rotate(-14deg) scale(0.86);
   opacity: 0;
 }
 
@@ -930,19 +945,39 @@ body::before {
   }
 
   .intro-flower {
-    top: 62%;
-    width: min(30vw, 175px);   /* slightly larger */
-    max-height: 40%;
+    width: min(30vw, 175px);
+    max-height: 34%;
+  }
+
+  .intro-flower-left,
+  .intro-flower-right,
+  .intro-flower-mobile-top-left,
+  .intro-flower-mobile-top-right {
+    display: block;
   }
 
   .intro-flower-left {
-    left: 20px;                /* move inward */
+    top: 72%;
+    left: 24px;
     transform: translateY(-50%) rotate(-4deg);
   }
 
   .intro-flower-right {
-    right: 20px;               /* move inward */
+    top: 72%;
+    right: 24px;
     transform: translateY(-50%) scaleX(-1) rotate(-4deg);
+  }
+
+  .intro-flower-mobile-top-left {
+    top: 28%;
+    left: 24px;
+    transform: translateY(-50%) rotate(-4deg) scale(0.92);
+  }
+
+  .intro-flower-mobile-top-right {
+    top: 28%;
+    right: 24px;
+    transform: translateY(-50%) scaleX(-1) rotate(-4deg) scale(0.92);
   }
 
   .open-envelope-btn {
