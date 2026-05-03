@@ -937,6 +937,7 @@ body.card-opened .page {
   }
 
   .intro-flower {
+    top: 62%;
     width: min(30vw, 175px);   /* slightly larger */
     max-height: 40%;
   }
