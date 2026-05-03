@@ -74,7 +74,7 @@ function createPetalEffect() {
     "rgba(214, 170, 88, 0.68)"
   ];
 
-  const petalCount = window.matchMedia("(max-width: 520px)").matches ? 24 : 40;
+  const petalCount = window.matchMedia("(max-width: 520px)").matches ? 16 : 28;
 
   for (let i = 0; i < petalCount; i += 1) {
     const petal = document.createElement("span");
@@ -82,7 +82,7 @@ function createPetalEffect() {
     petal.style.setProperty("--x", `${Math.random() * 100}%`);
     petal.style.setProperty("--size", `${8 + Math.random() * 10}px`);
     petal.style.setProperty("--duration", `${8 + Math.random() * 8}s`);
-    petal.style.setProperty("--delay", `${Math.random() * -5}s`);
+    petal.style.setProperty("--delay", `${Math.random() * -14}s`);
     petal.style.setProperty("--drift", `${-80 + Math.random() * 160}px`);
     petal.style.setProperty("--rotate", `${Math.random() * 180}deg`);
     petal.style.setProperty("--opacity", `${0.34 + Math.random() * 0.36}`);
@@ -100,21 +100,13 @@ if (envelopeIntro && openEnvelopeBtn) {
     openEnvelopeBtn.disabled = true;
     envelopeIntro.classList.add("opened");
 
-    setTimeout(() => {
-      createPetalEffect();
-      document.body.classList.add("petals-active");
-      envelopeIntro.classList.add("opening-active");
-    }, 280);
-
-    setTimeout(() => {
-      document.body.classList.add("card-opened");
-    }, 760);
+    createPetalEffect();
+    document.body.classList.add("petals-active");
 
     setTimeout(() => {
       envelopeIntro.classList.add("hide");
       document.body.classList.remove("intro-active");
-      envelopeIntro.classList.remove("opening-active");
-    }, 1850);
+    }, 1600);
   });
 }
 
