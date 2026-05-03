@@ -606,71 +606,121 @@ body::before {
   left: 50%;
   top: 50%;
   z-index: 8;
-  width: 124px;
-  height: 124px;
+  width: 142px;
+  height: 142px;
   padding: 0;
-  border: 2px solid var(--white);
+  border: 0;
   border-radius: 50%;
   cursor: pointer;
   transform: translate(-50%, -50%);
-  color: var(--burgundy);
-  background:
-    radial-gradient(circle at 50% 50%, rgba(91, 15, 47, 0.18) 0 4px, transparent 5px),
-    radial-gradient(circle at 50% 50%, transparent 0 24px, rgba(91, 15, 47, 0.22) 25px 27px, transparent 28px),
-    repeating-conic-gradient(from 0deg, rgba(91, 15, 47, 0.26) 0 8deg, transparent 8deg 16deg),
-    radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.9), transparent 18%),
-    linear-gradient(135deg, var(--gold), var(--gold));
+  background: transparent;
   box-shadow:
-    0 0 0 10px rgba(214, 170, 88, 0.16),
-    0 0 0 20px rgba(255, 255, 255, 0.04),
-    0 22px 58px rgba(91, 15, 47, 0.44);
+    0 0 0 10px rgba(214, 170, 88, 0.15),
+    0 0 0 22px rgba(255, 255, 255, 0.045),
+    0 28px 70px rgba(0, 0, 0, 0.38),
+    0 0 42px rgba(214, 170, 88, 0.28);
   transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease,
+    transform 0.32s ease,
+    box-shadow 0.32s ease,
     opacity 0.3s ease;
-}
-
-.open-envelope-btn::before,
-.open-envelope-btn::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
+  overflow: visible;
 }
 
 .open-envelope-btn::before {
-  inset: 12px;
-  border: 1px solid rgba(91, 15, 47, 0.42);
-  box-shadow: inset 0 0 0 8px rgba(255, 255, 255, 0.12);
+  content: "";
+  position: absolute;
+  inset: -13px;
+  border-radius: 50%;
+  background:
+    conic-gradient(
+      from 0deg,
+      transparent 0 16deg,
+      rgba(214, 170, 88, 0.75) 17deg 20deg,
+      transparent 21deg 38deg
+    );
+  opacity: 0.42;
+  filter: blur(0.2px);
+  animation: ringHaloRotate 9s linear infinite;
+  pointer-events: none;
 }
 
 .open-envelope-btn::after {
-  inset: 33px;
-  border: 2px solid rgba(91, 15, 47, 0.42);
-  clip-path: polygon(50% 0, 64% 34%, 100% 50%, 64% 66%, 50% 100%, 36% 66%, 0 50%, 36% 34%);
-  background: rgba(255, 255, 255, 0.14);
+  content: "";
+  position: absolute;
+  inset: -22px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(214, 170, 88, 0.24), transparent 66%);
+  filter: blur(10px);
+  opacity: 0.78;
+  animation: ringGlowPulse 3.8s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
 }
 
-.open-envelope-btn span {
+.open-envelope-btn img {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: block;
-  width: 42px;
-  height: 42px;
-  margin: auto;
-  border: 1px solid rgba(91, 15, 47, 0.42);
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
-  background:
-    radial-gradient(circle, var(--burgundy) 0 3px, transparent 4px),
-    repeating-conic-gradient(from 22deg, transparent 0 16deg, rgba(91, 15, 47, 0.32) 16deg 20deg);
+  object-fit: cover;
+  object-position: center;
+  animation: ringButtonRotate 16s linear infinite;
+  filter:
+    drop-shadow(0 14px 22px rgba(0, 0, 0, 0.38))
+    drop-shadow(0 0 16px rgba(214, 170, 88, 0.34));
+  user-select: none;
+  pointer-events: none;
 }
 
 .open-envelope-btn:hover {
-  transform: translate(-50%, -50%) scale(1.06);
+  transform: translate(-50%, -50%) scale(1.075);
   box-shadow:
     0 0 0 14px rgba(214, 170, 88, 0.18),
-    0 0 0 26px rgba(255, 255, 255, 0.05),
-    0 28px 68px rgba(91, 15, 47, 0.5);
+    0 0 0 30px rgba(255, 255, 255, 0.055),
+    0 34px 84px rgba(0, 0, 0, 0.44),
+    0 0 58px rgba(214, 170, 88, 0.38);
+}
+
+.open-envelope-btn:hover img {
+  animation-duration: 9s;
+}
+
+.open-envelope-btn:active {
+  transform: translate(-50%, -50%) scale(0.96);
+}
+
+@keyframes ringButtonRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ringHaloRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes ringGlowPulse {
+  0%, 100% {
+    opacity: 0.55;
+    transform: scale(0.96);
+  }
+
+  50% {
+    opacity: 0.95;
+    transform: scale(1.06);
+  }
 }
 
 .open-envelope-btn:disabled {
@@ -883,17 +933,8 @@ body::before {
   }
 
   .open-envelope-btn {
-    width: 104px;
-    height: 104px;
-  }
-
-  .open-envelope-btn span {
-    font-size: 1.65rem;
-    gap: 4px;
-  }
-
-  .open-envelope-btn span small {
-    font-size: 1.16rem;
+    width: 106px;
+    height: 106px;
   }
 }
 
