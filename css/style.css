@@ -451,7 +451,7 @@ body::before {
   line-height: 1;
 }
 
-/* Split Invitation Intro - Invitation Card Opening */
+/* Split Invitation Intro */
 
 .envelope-intro {
   position: fixed;
@@ -461,10 +461,9 @@ body::before {
   place-items: center;
   overflow: hidden;
   background:
-    radial-gradient(circle at center, rgba(255, 244, 223, 0.22), transparent 34%),
-    linear-gradient(135deg, #3f0820 0%, var(--burgundy) 48%, #3f0820 100%);
-  perspective: 1800px;
-  transition: opacity 0.75s ease, visibility 0.75s ease;
+    radial-gradient(circle at center, rgba(214, 170, 88, 0.18), transparent 38%),
+    linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy) 100%);
+  transition: opacity 0.55s ease, visibility 0.55s ease;
 }
 
 .envelope-intro.hide {
@@ -475,103 +474,82 @@ body::before {
 
 .split-invitation {
   position: relative;
-  width: min(920px, calc(100vw - 28px));
-  height: min(640px, calc(100vh - 48px));
+  width: 100%;
+  height: 100%;
   display: grid;
   place-items: center;
-  overflow: visible;
-  transform-style: preserve-3d;
+  overflow: hidden;
 }
 
-.split-invitation::before {
-  content: "";
-  position: absolute;
-  inset: -26px;
-  border-radius: 36px;
-  background:
-    radial-gradient(circle at 20% 30%, rgba(214, 170, 88, 0.24), transparent 28%),
-    radial-gradient(circle at 80% 70%, rgba(214, 170, 88, 0.18), transparent 30%);
-  filter: blur(18px);
-  opacity: 0.72;
-  pointer-events: none;
-}
-
+.split-invitation::before,
 .split-invitation::after {
   content: "";
   position: absolute;
-  inset: -12px;
-  border: 1px solid rgba(214, 170, 88, 0.36);
-  border-radius: 34px;
+  width: min(72vw, 760px);
+  height: min(72vw, 760px);
+  border: 1px solid rgba(214, 170, 88, 0.18);
+  border-radius: 50%;
   pointer-events: none;
-  box-shadow:
-    0 34px 100px rgba(30, 2, 14, 0.48),
-    inset 0 0 0 1px rgba(255, 244, 223, 0.08);
+  opacity: 0.7;
+}
+
+.split-invitation::before {
+  top: -34%;
+  left: -18%;
+}
+
+.split-invitation::after {
+  right: -18%;
+  bottom: -34%;
 }
 
 .split-panel {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 50.08%;
+  width: 50.2%;
   overflow: hidden;
   background:
-    linear-gradient(90deg, rgba(255, 244, 223, 0.08), transparent 24%, transparent 76%, rgba(255, 244, 223, 0.08)),
-    radial-gradient(circle at center, rgba(214, 170, 88, 0.16), transparent 42%),
-    linear-gradient(135deg, #6d1439 0%, var(--burgundy) 48%, #4a0b26 100%);
-  border-top: 1px solid rgba(214, 170, 88, 0.72);
-  border-bottom: 1px solid rgba(214, 170, 88, 0.72);
-  box-shadow:
-    inset 0 0 0 10px rgba(255, 244, 223, 0.025),
-    inset 0 0 0 12px rgba(214, 170, 88, 0.16),
-    0 30px 90px rgba(30, 2, 14, 0.48);
+    radial-gradient(circle at center, rgba(214, 170, 88, 0.16), transparent 38%),
+    repeating-linear-gradient(45deg, rgba(214, 170, 88, 0.08) 0 1px, transparent 1px 18px),
+    linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy) 100%);
+  border: 1px solid rgba(214, 170, 88, 0.46);
+  box-shadow: 0 26px 90px rgba(91, 15, 47, 0.55);
   transition:
-    transform 1.55s cubic-bezier(0.76, 0, 0.18, 1),
-    opacity 0.74s ease 0.92s,
-    filter 0.74s ease 0.48s;
+    transform 1.28s cubic-bezier(0.76, 0, 0.24, 1),
+    opacity 0.6s ease 0.78s;
   z-index: 4;
-  backface-visibility: hidden;
 }
 
 .split-panel-left {
   left: 0;
   transform-origin: left center;
-  border-left: 1px solid rgba(214, 170, 88, 0.72);
-  border-right: 1px solid rgba(244, 212, 147, 0.9);
-  border-radius: 32px 0 0 32px;
+  border-right: 1px solid rgba(214, 170, 88, 0.76);
 }
 
 .split-panel-right {
   right: 0;
   transform-origin: right center;
-  border-right: 1px solid rgba(214, 170, 88, 0.72);
-  border-left: 1px solid rgba(244, 212, 147, 0.9);
-  border-radius: 0 32px 32px 0;
+  border-left: 1px solid rgba(214, 170, 88, 0.76);
 }
 
 .split-panel::before {
   content: "";
   position: absolute;
-  inset: clamp(16px, 2.6vw, 34px);
-  border: 1px solid rgba(244, 212, 147, 0.58);
+  inset: clamp(18px, 3vw, 42px);
+  border: 1px solid rgba(214, 170, 88, 0.58);
+  border-radius: 0;
   pointer-events: none;
-}
-
-.split-panel-left::before {
-  border-radius: 24px 0 0 24px;
-}
-
-.split-panel-right::before {
-  border-radius: 0 24px 24px 0;
 }
 
 .split-panel::after {
   content: "";
   position: absolute;
-  top: 22px;
-  bottom: 22px;
+  top: 0;
+  bottom: 0;
   width: 1px;
-  background: linear-gradient(180deg, transparent, rgba(255, 244, 223, 0.94), var(--gold), transparent);
-  opacity: 0.92;
+  background: linear-gradient(180deg, transparent, var(--gold), transparent);
+  opacity: 0.8;
 }
 
 .split-panel-left::after {
@@ -582,41 +560,82 @@ body::before {
   left: 0;
 }
 
-.intro-flower {
+
+.opening-transition {
   position: absolute;
-  top: 50%;
-  width: min(28vw, 260px);
-  max-height: 56%;
-  object-fit: contain;
-  object-position: center;
-  z-index: 6;
-  opacity: 0.94;
-  filter:
-    drop-shadow(0 16px 28px rgba(0, 0, 0, 0.24))
-    drop-shadow(0 0 14px rgba(214, 170, 88, 0.2));
+  inset: 0;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  user-select: none;
-  transition:
-    transform 1.55s cubic-bezier(0.76, 0, 0.18, 1),
-    opacity 0.72s ease 0.84s,
-    filter 0.72s ease;
+  background:
+    radial-gradient(circle at center, rgba(214, 170, 88, 0.22), transparent 34%),
+    linear-gradient(135deg, #3f0820 0%, var(--burgundy) 50%, #3f0820 100%);
+  transition: opacity 0.45s ease, visibility 0.45s ease;
 }
 
-.intro-flower-left {
-  left: clamp(28px, 7vw, 92px);
-  transform: translateY(-50%) rotate(-4deg) scale(1);
+.opening-transition p {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.8rem, 5vw, 3.8rem);
+  color: var(--gold-light);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+  animation: openingTextPulse 1.4s ease-in-out infinite;
 }
 
-.intro-flower-right {
-  right: clamp(28px, 7vw, 92px);
-  transform: translateY(-50%) scaleX(-1) rotate(-4deg) scale(1);
+.opening-glow {
+  position: absolute;
+  width: min(54vw, 360px);
+  height: min(54vw, 360px);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(255, 244, 223, 0.28), transparent 34%),
+    radial-gradient(circle, rgba(214, 170, 88, 0.22), transparent 68%);
+  filter: blur(8px);
+  animation: openingGlowBloom 1.7s ease-in-out infinite;
 }
+
+.envelope-intro.opening-stage .opening-transition {
+  opacity: 1;
+  visibility: visible;
+}
+
+@keyframes openingTextPulse {
+  0%, 100% {
+    opacity: 0.62;
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.03);
+  }
+}
+
+@keyframes openingGlowBloom {
+  0%, 100% {
+    opacity: 0.55;
+    transform: scale(0.92);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+}
+
 /* Ring Image Open Button */
 .open-envelope-btn {
   position: absolute;
   left: 50%;
   top: 50%;
-  z-index: 10;
+  z-index: 8;
   width: 160px;
   height: 160px;
   padding: 0;
@@ -634,19 +653,18 @@ body::before {
   box-shadow: none;
   transition:
     transform 0.28s ease,
-    opacity 0.38s ease;
+    opacity 0.3s ease;
 }
 
 .open-envelope-btn::before {
   content: "";
   position: absolute;
-  inset: -30px;
+  inset: -28px;
   border-radius: 50%;
   background:
-    radial-gradient(circle, rgba(255, 244, 223, 0.26), transparent 30%),
-    radial-gradient(circle, rgba(214, 170, 88, 0.42), rgba(214, 170, 88, 0.16) 36%, transparent 70%);
+    radial-gradient(circle, rgba(214, 170, 88, 0.36), rgba(214, 170, 88, 0.15) 34%, transparent 68%);
   filter: blur(10px);
-  opacity: 0.82;
+  opacity: 0.78;
   pointer-events: none;
   z-index: 0;
   animation: ringGlowPulse 3.8s ease-in-out infinite;
@@ -657,7 +675,14 @@ body::before {
   position: absolute;
   inset: -10px;
   border-radius: 50%;
-  background: conic-gradient(from 0deg, transparent 0deg, rgba(255, 244, 223, 0.18) 28deg, transparent 62deg, transparent 360deg);
+  background:
+    conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      rgba(255, 244, 223, 0.18) 28deg,
+      transparent 62deg,
+      transparent 360deg
+    );
   opacity: 0;
   pointer-events: none;
   z-index: 1;
@@ -671,6 +696,7 @@ body::before {
   width: 100%;
   height: 100%;
   max-width: none;
+  border-radius: 0;
   object-fit: contain;
   object-position: center;
   transform: rotate(0deg) scale(1);
@@ -710,7 +736,10 @@ body::before {
 }
 
 .open-envelope-btn.is-opening img {
-  transition: transform 0.48s ease, opacity 0.48s ease, filter 0.48s ease;
+  transition:
+    transform 0.48s ease,
+    opacity 0.48s ease,
+    filter 0.48s ease;
   filter:
     drop-shadow(0 12px 20px rgba(0, 0, 0, 0.26))
     drop-shadow(0 0 28px rgba(214, 170, 88, 0.52));
@@ -721,48 +750,76 @@ body::before {
 }
 
 @keyframes ringGlowPulse {
-  0%, 100% { opacity: 0.52; transform: scale(0.94); }
-  50% { opacity: 0.98; transform: scale(1.08); }
+  0%, 100% {
+    opacity: 0.52;
+    transform: scale(0.94);
+  }
+
+  50% {
+    opacity: 0.98;
+    transform: scale(1.08);
+  }
 }
 
 @keyframes buttonClickPop {
-  0% { transform: translate(-50%, -50%) scale(1); }
-  45% { transform: translate(-50%, -50%) scale(0.92); }
-  100% { transform: translate(-50%, -50%) scale(1); }
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  45% {
+    transform: translate(-50%, -50%) scale(0.92);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
 }
 
 @keyframes ringOpeningBloom {
-  0% { opacity: 0.86; transform: scale(1); filter: blur(10px); }
-  72% { opacity: 1; transform: scale(1.42); filter: blur(14px); }
-  100% { opacity: 0; transform: scale(1.72); filter: blur(18px); }
+  0% {
+    opacity: 0.86;
+    transform: scale(1);
+    filter: blur(10px);
+  }
+
+  72% {
+    opacity: 1;
+    transform: scale(1.42);
+    filter: blur(14px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.72);
+    filter: blur(18px);
+  }
 }
 
 @keyframes ringLightSweep {
-  0% { opacity: 0; transform: rotate(-35deg) scale(0.88); }
-  34% { opacity: 0.85; }
-  100% { opacity: 0; transform: rotate(85deg) scale(1.16); }
+  0% {
+    opacity: 0;
+    transform: rotate(-35deg) scale(0.88);
+  }
+
+  34% {
+    opacity: 0.85;
+  }
+
+  100% {
+    opacity: 0;
+    transform: rotate(85deg) scale(1.16);
+  }
 }
 
+
 .envelope-intro.opened .split-panel-left {
-  transform: translateX(-105%) rotateY(-78deg) scale(0.98);
-  opacity: 0.38;
-  filter: brightness(1.05);
+  transform: translateX(-104%) rotateY(-8deg);
+  opacity: 0.98;
 }
 
 .envelope-intro.opened .split-panel-right {
-  transform: translateX(105%) rotateY(78deg) scale(0.98);
-  opacity: 0.38;
-  filter: brightness(1.05);
-}
-
-.envelope-intro.opened .intro-flower-left {
-  transform: translate(-94vw, -50%) rotate(-14deg) scale(0.94);
-  opacity: 0;
-}
-
-.envelope-intro.opened .intro-flower-right {
-  transform: translate(94vw, -50%) scaleX(-1) rotate(-14deg) scale(0.94);
-  opacity: 0;
+  transform: translateX(104%) rotateY(8deg);
+  opacity: 0.98;
 }
 
 .envelope-intro.opened .open-envelope-btn {
@@ -784,10 +841,14 @@ body.card-opened .page {
 }
 
 @keyframes floatGlow {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-18px) scale(1.03); }
-}
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
 
+  50% {
+    transform: translateY(-18px) scale(1.03);
+  }
+}
 
 /* Tablet */
 
@@ -916,40 +977,43 @@ body.card-opened .page {
     bottom: 22px;
   }
 
+  .envelope-wrap {
+    height: 250px;
+  }
+
+  .envelope-back {
+    inset: 66px 0 0;
+  }
+
+  .envelope-front {
+    height: 158px;
+  }
+
+  .envelope-flap {
+    top: 66px;
+    height: 150px;
+  }
+
+  .invite-note {
+    width: 86%;
+    min-height: 160px;
+    padding: 22px 12px 18px;
+  }
+
+  .invite-note span {
+    font-size: clamp(1rem, 6vw, 1.35rem);
+    letter-spacing: 0.09em;
+  }
+
+  .envelope-intro.opened .invite-note {
+    transform: translateX(-50%) translateY(-72px);
+  }
 }
 
 
 
 /* Split Invitation Mobile Refinements */
 @media (max-width: 520px) {
-  .split-invitation {
-    width: calc(100vw - 18px);
-    height: min(560px, calc(100vh - 32px));
-  }
-
-  .split-panel-left {
-    border-radius: 22px 0 0 22px;
-  }
-
-  .split-panel-right {
-    border-radius: 0 22px 22px 0;
-  }
-
-  .intro-flower {
-    width: min(30vw, 150px);   /* slightly larger */
-    max-height: 40%;
-  }
-
-  .intro-flower-left {
-    left: 30px;                /* move inward */
-    transform: translateY(-50%) rotate(-4deg);
-  }
-
-  .intro-flower-right {
-    right: 50px;               /* move inward */
-    transform: translateY(-50%) scaleX(-1) rotate(-4deg);
-  }
-
   .open-envelope-btn {
     width: 118px;
     height: 118px;
@@ -964,7 +1028,7 @@ body.card-opened .page {
 .petal-layer {
   position: fixed;
   inset: 0;
-  z-index: 2;
+  z-index: 100000;
   pointer-events: none;
   overflow: hidden;
   opacity: 0;
