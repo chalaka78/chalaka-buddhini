@@ -942,12 +942,12 @@ body.card-opened .page {
   }
 
   .intro-flower-left {
-    left: 25px;                /* move inward */
+    left: 23px;                /* move inward */
     transform: translateY(-50%) rotate(-4deg);
   }
 
   .intro-flower-right {
-    right: 25px;               /* move inward */
+    right: 22px;               /* move inward */
     transform: translateY(-50%) scaleX(-1) rotate(-4deg);
   }
 
