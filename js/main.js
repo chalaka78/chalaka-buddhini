@@ -101,19 +101,18 @@ if (envelopeIntro && openEnvelopeBtn) {
     envelopeIntro.classList.add("opened");
 
     setTimeout(() => {
-      envelopeIntro.classList.add("opening-stage");
       createPetalEffect();
       document.body.classList.add("petals-active");
-    }, 850);
+    }, 650);
 
     setTimeout(() => {
       document.body.classList.add("card-opened");
-    }, 1450);
+    }, 1200);
 
     setTimeout(() => {
       envelopeIntro.classList.add("hide");
       document.body.classList.remove("intro-active");
-    }, 2100);
+    }, 1850);
   });
 }
 
