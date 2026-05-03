@@ -585,15 +585,15 @@ body::before {
 .intro-flower {
   position: absolute;
   top: 50%;
-  width: min(42vw, 380px);
-  max-height: 78%;
+  width: min(28vw, 260px);
+  max-height: 56%;
   object-fit: contain;
   object-position: center;
   z-index: 6;
-  opacity: 0.96;
+  opacity: 0.94;
   filter:
-    drop-shadow(0 20px 34px rgba(0, 0, 0, 0.28))
-    drop-shadow(0 0 16px rgba(214, 170, 88, 0.24));
+    drop-shadow(0 16px 28px rgba(0, 0, 0, 0.24))
+    drop-shadow(0 0 14px rgba(214, 170, 88, 0.2));
   pointer-events: none;
   user-select: none;
   transition:
@@ -603,15 +603,14 @@ body::before {
 }
 
 .intro-flower-left {
-  left: clamp(18px, 5vw, 68px);
-  transform: translateY(-50%) rotate(-4deg) scale(1.02);
+  left: clamp(28px, 7vw, 92px);
+  transform: translateY(-50%) rotate(-4deg) scale(1);
 }
 
 .intro-flower-right {
-  right: clamp(18px, 5vw, 68px);
-  transform: translateY(-50%) scaleX(-1) rotate(-4deg) scale(1.02);
+  right: clamp(28px, 7vw, 92px);
+  transform: translateY(-50%) scaleX(-1) rotate(-4deg) scale(1);
 }
-
 /* Ring Image Open Button */
 .open-envelope-btn {
   position: absolute;
@@ -936,18 +935,18 @@ body.card-opened .page {
     border-radius: 0 22px 22px 0;
   }
 
-  .intro-flower {
-    width: min(48vw, 210px);
-    max-height: 66%;
-  }
+.intro-flower {
+  width: min(34vw, 128px);
+  max-height: 42%;
+}
 
-  .intro-flower-left {
-    left: -8px;
-  }
+.intro-flower-left {
+  left: 16px;
+}
 
-  .intro-flower-right {
-    right: -8px;
-  }
+.intro-flower-right {
+  right: 16px;
+}
 
   .open-envelope-btn {
     width: 118px;
