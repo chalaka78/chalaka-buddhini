@@ -1803,7 +1803,7 @@ body.petals-active .petal-layer {
 .quote-photo-content {
   position: absolute;
   left: 50%;
-  top: 56%;
+  top: 65%;
   bottom: auto;
   z-index: 3;
   width: min(800px, calc(100% - 78px));
