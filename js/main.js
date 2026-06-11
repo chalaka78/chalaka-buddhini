@@ -230,3 +230,41 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.14 });
 
 revealElements.forEach((element) => revealObserver.observe(element));
+
+// Add to Calendar — builds a real .ics file the guest can open in
+// Apple Calendar, Google Calendar, or Outlook.
+const addCalendarBtn = document.getElementById("addCalendar");
+
+if (addCalendarBtn) {
+  addCalendarBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    const ics = [
+      "BEGIN:VCALENDAR",
+      "VERSION:2.0",
+      "PRODID:-//Chalaka and Buddhini//Wedding//EN",
+      "CALSCALE:GREGORIAN",
+      "BEGIN:VEVENT",
+      "UID:chalaka-buddhini-wedding-2026@invitation",
+      "DTSTAMP:20260101T000000Z",
+      "DTSTART;VALUE=DATE:20260731",
+      "DTEND;VALUE=DATE:20260801",
+      "SUMMARY:Chalaka & Buddhini Wedding",
+      "DESCRIPTION:Join us as we celebrate our wedding day.",
+      "LOCATION:Grand Walawwa, Kegalle, Sri Lanka",
+      "STATUS:CONFIRMED",
+      "END:VEVENT",
+      "END:VCALENDAR"
+    ].join("\r\n");
+
+    const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "Chalaka-and-Buddhini-Wedding.ics";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setTimeout(() => URL.revokeObjectURL(url), 1500);
+  });
+}
