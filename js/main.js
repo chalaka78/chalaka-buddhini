@@ -255,10 +255,10 @@ if (addCalendarBtn) {
       "BEGIN:VEVENT",
       "UID:chalaka-buddhini-wedding-2026@invitation",
       "DTSTAMP:20260101T000000Z",
-      "DTSTART;VALUE=DATE:20260731",
-      "DTEND;VALUE=DATE:20260801",
+      "DTSTART:20260731T100000Z",
+      "DTEND:20260731T180000Z",
       "SUMMARY:Chalaka & Buddhini Wedding",
-      "DESCRIPTION:Join us as we celebrate our wedding day.",
+      "DESCRIPTION:Join us as we celebrate our wedding day. Poruwa ceremony at 3:41 PM. Kindly RSVP by 10th July 2026.",
       "LOCATION:Grand Walawwa, Kegalle, Sri Lanka",
       "STATUS:CONFIRMED",
       "END:VEVENT",
@@ -276,3 +276,34 @@ if (addCalendarBtn) {
     setTimeout(() => URL.revokeObjectURL(url), 1500);
   });
 }
+
+// Scroll progress bar + back-to-top button (created in JS, no markup needed)
+const scrollProgress = document.createElement("div");
+scrollProgress.className = "scroll-progress";
+scrollProgress.setAttribute("aria-hidden", "true");
+document.body.appendChild(scrollProgress);
+
+const toTopBtn = document.createElement("button");
+toTopBtn.className = "to-top";
+toTopBtn.type = "button";
+toTopBtn.setAttribute("aria-label", "Back to top");
+toTopBtn.textContent = "\u2191";
+document.body.appendChild(toTopBtn);
+
+toTopBtn.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+function updateScrollUI() {
+  const doc = document.documentElement;
+  const scrolled = doc.scrollTop || document.body.scrollTop;
+  const max = doc.scrollHeight - doc.clientHeight;
+  const pct = max > 0 ? (scrolled / max) * 100 : 0;
+
+  scrollProgress.style.width = `${pct}%`;
+  toTopBtn.classList.toggle("show", scrolled > 620);
+}
+
+window.addEventListener("scroll", updateScrollUI, { passive: true });
+window.addEventListener("resize", updateScrollUI);
+updateScrollUI();
