@@ -2016,6 +2016,13 @@ body.petals-active .petal-layer {
   letter-spacing: 0.06em;
 }
 
+/* keep auto-detected phone links (mobile Safari) on theme, not browser blue */
+.contact-phone,
+.contact-phone a {
+  color: var(--gold-light) !important;
+  text-decoration: none !important;
+}
+
 .contact-actions {
   display: flex;
   gap: 10px;
