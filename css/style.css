@@ -1993,6 +1993,11 @@ body.petals-active .petal-layer {
   box-shadow: 0 12px 26px rgba(214, 170, 88, 0.3);
 }
 
+.contact-avatar .avatar-icon {
+  width: 34px;
+  height: 34px;
+}
+
 .contact-name {
   margin: 0 0 5px;
   font-family: "Cormorant Garamond", serif;
