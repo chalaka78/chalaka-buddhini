@@ -50,6 +50,7 @@ function animateRingButtonImage() {
     openEnvelopeBtn.classList.add("is-clicked");
   });
 
+  // seal "cracks" the moment it is pressed, then the flap takes over
   openEnvelopeBtn.addEventListener("click", () => {
     openEnvelopeBtn.classList.add("is-opening");
     isRunning = false;
@@ -167,18 +168,25 @@ if (envelopeIntro && openEnvelopeBtn) {
 
   openEnvelopeBtn.addEventListener("click", () => {
     openEnvelopeBtn.disabled = true;
-    envelopeIntro.classList.add("opened");
-    envelopeIntro.setAttribute("aria-hidden", "true");
-
     document.body.classList.remove("intro-active");
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
 
-    createPetalEffect();
-    document.body.classList.add("petals-active");
-
+    // 1) seal cracks (handled above) -> 2) flap lifts + card slides out
     setTimeout(() => {
+      envelopeIntro.classList.add("opened");
+      envelopeIntro.setAttribute("aria-hidden", "true");
+    }, 280);
+
+    // 3) petals begin drifting once the flap has opened
+    setTimeout(() => {
+      createPetalEffect();
+      document.body.classList.add("petals-active");
+    }, 1050);
+
+    // 4) fade the whole intro away to reveal the invitation
+    setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
       envelopeIntro.classList.add("hide");
-    }, 1500);
+    }, 2500);
   });
 }
 
