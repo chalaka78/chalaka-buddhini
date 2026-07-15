@@ -3,6 +3,114 @@ const openEnvelopeBtn = document.getElementById("openEnvelopeBtn");
 const heroCoupleStage = document.getElementById("heroCoupleStage");
 const heroCard = document.querySelector(".hero-card");
 
+/* ============================================================
+   BACKGROUND MUSIC — begins on the seal tap (a real user
+   gesture, so browser autoplay policies allow it)
+   ============================================================ */
+
+const bgMusic = document.getElementById("bgMusic");
+const musicToggle = document.getElementById("musicToggle");
+const MUSIC_VOLUME = 0.55;
+let musicStarted = false;
+let fadeFrame = null;
+
+function fadeVolume(target, duration) {
+  if (!bgMusic) {
+    return;
+  }
+
+  if (fadeFrame) {
+    cancelAnimationFrame(fadeFrame);
+  }
+
+  const start = bgMusic.volume;
+  const startTime = performance.now();
+
+  function step(now) {
+    const t = Math.min((now - startTime) / duration, 1);
+    bgMusic.volume = Math.min(Math.max(start + (target - start) * t, 0), 1);
+
+    if (t < 1) {
+      fadeFrame = requestAnimationFrame(step);
+    } else {
+      fadeFrame = null;
+    }
+  }
+
+  fadeFrame = requestAnimationFrame(step);
+}
+
+function setMusicButtonState(isPlaying) {
+  if (!musicToggle) {
+    return;
+  }
+
+  musicToggle.setAttribute("aria-pressed", isPlaying ? "true" : "false");
+  musicToggle.setAttribute("aria-label", isPlaying ? "Turn music off" : "Turn music on");
+  document.body.classList.toggle("music-on", isPlaying);
+}
+
+function startWeddingMusic() {
+  if (!bgMusic || musicStarted) {
+    return;
+  }
+
+  musicStarted = true;
+  bgMusic.volume = 0;
+
+  const playAttempt = bgMusic.play();
+
+  if (playAttempt === undefined) {
+    document.body.classList.add("music-available");
+    setMusicButtonState(true);
+    fadeVolume(MUSIC_VOLUME, 2200);
+    return;
+  }
+
+  playAttempt
+    .then(() => {
+      document.body.classList.add("music-available");
+      setMusicButtonState(true);
+      fadeVolume(MUSIC_VOLUME, 2200);
+    })
+    .catch(() => {
+      // blocked (e.g. iOS low-power mode) — reveal the button so the guest can start it
+      musicStarted = false;
+      document.body.classList.add("music-available");
+      setMusicButtonState(false);
+    });
+}
+
+if (musicToggle && bgMusic) {
+  musicToggle.addEventListener("click", () => {
+    if (bgMusic.paused) {
+      musicStarted = true;
+      bgMusic.play()
+        .then(() => {
+          setMusicButtonState(true);
+          fadeVolume(MUSIC_VOLUME, 900);
+        })
+        .catch(() => setMusicButtonState(false));
+    } else {
+      bgMusic.pause();
+      setMusicButtonState(false);
+    }
+  });
+}
+
+// pause when the guest leaves the tab, resume when they return
+document.addEventListener("visibilitychange", () => {
+  if (!bgMusic || !musicStarted) {
+    return;
+  }
+
+  if (document.hidden) {
+    bgMusic.pause();
+  } else if (musicToggle && musicToggle.getAttribute("aria-pressed") === "true") {
+    bgMusic.play().catch(() => {});
+  }
+});
+
 function animateRingButtonImage() {
   const ringImage = openEnvelopeBtn ? openEnvelopeBtn.querySelector("img") : null;
 
@@ -169,6 +277,9 @@ if (envelopeIntro && openEnvelopeBtn) {
   openEnvelopeBtn.addEventListener("click", () => {
     openEnvelopeBtn.disabled = true;
     document.body.classList.remove("intro-active");
+
+    // 0) music starts on the tap itself — the gesture browsers require
+    startWeddingMusic();
 
     // 1) seal cracks (handled above) -> 2) flap lifts + card slides out
     setTimeout(() => {
