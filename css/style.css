@@ -2113,6 +2113,70 @@ body.petals-active .petal-layer {
   box-shadow: 0 20px 40px rgba(214, 170, 88, 0.42);
 }
 
+/* ---------- Background music toggle ---------- */
+.music-toggle {
+  position: fixed;
+  left: 22px;
+  bottom: 22px;
+  z-index: 99997;
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  border: 1px solid rgba(214, 170, 88, 0.4);
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  color: var(--gold-light);
+  background: rgba(91, 15, 47, 0.72);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 14px 30px rgba(30, 2, 14, 0.36);
+  font-size: 1.15rem;
+  line-height: 1;
+  transition: opacity 0.35s ease, transform 0.35s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+body.music-available .music-toggle {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+body.music-available .music-toggle:hover {
+  transform: translateY(-3px);
+  border-color: rgba(214, 170, 88, 0.75);
+}
+
+.music-toggle .music-icon {
+  display: block;
+}
+
+body.music-on .music-toggle .music-icon {
+  animation: musicNotePulse 1.9s ease-in-out infinite;
+}
+
+/* muted state — dimmed with a slash across the note */
+.music-toggle[aria-pressed="false"] {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.music-toggle[aria-pressed="false"]::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  top: 50%;
+  height: 1.5px;
+  background: currentColor;
+  transform: rotate(-45deg);
+}
+
+@keyframes musicNotePulse {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50% { transform: scale(1.18); opacity: 1; }
+}
+
 /* ---------- responsive ---------- */
 @media (max-width: 760px) {
   .family-grid {
@@ -2162,10 +2226,22 @@ body.petals-active .petal-layer {
     width: 44px;
     height: 44px;
   }
+
+  .music-toggle {
+    left: 16px;
+    bottom: 16px;
+    width: 44px;
+    height: 44px;
+    font-size: 1rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .timeline-item.is-poruwa .timeline-dot {
+    animation: none;
+  }
+
+  body.music-on .music-toggle .music-icon {
     animation: none;
   }
 }
